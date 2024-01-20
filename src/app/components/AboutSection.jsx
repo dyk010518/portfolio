@@ -9,11 +9,12 @@ const TAB_DATA = [
         id: "skills",
         content: (
             <ul className='list-disc pl-2'>
-                <li>Node.js</li>
+                <li>Node</li>
                 <li>React</li>
                 <li>Next</li>
                 <li>Python</li>
                 <li>Typescript</li>
+                <li>Javascript</li>
                 <li>HTML/CSS</li>
             </ul>
         ),
@@ -23,9 +24,10 @@ const TAB_DATA = [
         id: "education",
         content: (
             <ul className='list-disc pl-2'>
-                <li>Lloyd C. Bird HS</li>
-                <li>MIT Bachelors</li>
                 <li>MIT Masters</li>
+                <li>MIT Bachelors</li>
+                <li>Lloyd C. Bird HS</li>
+
             </ul>
         ),
     },
@@ -34,6 +36,8 @@ const TAB_DATA = [
         id: "certifications",
         content: (
             <ul className='list-disc pl-2'>
+                <li>Gates Scholar</li>
+                <li>QuestBridge Scholar</li>
                 <li>Alexa Developer</li>
                 <li>MIT Bachelors</li>
             </ul>
