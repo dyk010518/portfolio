@@ -1,4 +1,4 @@
-[{
+export const Books = [{
   "_id": {
     "$oid": "65acfb5bb17a2ffb2ae1ef17"
   },
@@ -114,7 +114,7 @@
   "_id": {
     "$oid": "65acfb5bb17a2ffb2ae1ef1e"
   },
-  "title": "레이건 일레븐 (11 Principles of a Reagan Conservative)",
+  "title": "11 Principles of a Reagan Conservative",
   "author": "Paul Kengor",
   "genre": "Non-fiction",
   "finished": {

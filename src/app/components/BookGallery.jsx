@@ -1,68 +1,14 @@
 "use client";
 import clsx from "clsx";
 import { useState } from "react";
+import { Books } from "./Books"
 
-const books = [
-  {
-    title: "1984",
-    author: "",
-    genre: "",
-    finished: "",
-    comment: "",
-    quote: "",
-    rating: "",
-    coverUrl: "/images/about-image.png",
-    spineBackgroundColor: "#ae2d32",
-    spineForegroundColor: "#ffe9a2",
-  },
-  {
-    title: "Steve Jobs",
-    coverUrl: "/images/about-image.png",
-    spineBackgroundColor: "#ffffff",
-    spineForegroundColor: "#050505",
-  },
-  {
-    title: "Steve Jobs 2",
-    coverUrl: "/images/about-image.png",
-    spineBackgroundColor: "#ffffff",
-    spineForegroundColor: "#050505",
-  },
-  {
-    title: "Steve Jobs 3",
-    coverUrl: "/images/about-image.png",
-    spineBackgroundColor: "#ffffff",
-    spineForegroundColor: "#050505",
-  },
-  {
-    title: "Steve Jobs 4",
-    coverUrl: "/images/about-image.png",
-    spineBackgroundColor: "#ffffff",
-    spineForegroundColor: "#050505",
-  },
-  {
-    title: "Hitcher's Guide to the Galaxy",
-    coverUrl: "/images/about-image.png",
-    spineBackgroundColor: "#1f7189",
-    spineForegroundColor: "#ffffd5",
-  },
-  {
-    title: "The Ascent of Money",
-    coverUrl: "/images/about-image.png",
-    spineBackgroundColor: "#000004",
-    spineForegroundColor: "#fffffd",
-  },
-  {
-    title: "Snow Crash",
-    coverUrl: "/images/about-image.png",
-    spineBackgroundColor: "#262a57",
-    spineForegroundColor: "#fefcff",
-  },
-]
 
 const animationStyle = "transition-all duration-500 ease will-change-auto"
 
 const BookGalley = () => {
   const [focusedIndex, setFocusedIndex] = useState(-1);
+  console.log(Books);
 
   return (
     <>
@@ -77,7 +23,7 @@ const BookGalley = () => {
         </defs>
       </svg>
       <div role="list" className="flex flex-row justify-center space-x-4">
-        {books.map((book, index) => (
+        {Books.map((book, index) => (
           <button
             role="listitem"
             key={book.title}
@@ -102,8 +48,8 @@ const BookGalley = () => {
                 animationStyle
               )}
               style={{
-                backgroundColor: book.spineBackgroundColor,
-                color: book.spineForegroundColor,
+                backgroundColor: book.backgroundColor,
+                color: book.fontColor,
                 transformStyle: "preserve-3d",
                 transform: `translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(${
                   focusedIndex === index ? "-60deg" : "0deg"
@@ -142,7 +88,10 @@ const BookGalley = () => {
                 }}
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={book.coverUrl} alt={book.title} className={clsx("h-full w-48 bg-cover", animationStyle)} />
+              <img src="/images/about-image.png" alt={book.title} className={clsx("h-full w-48 bg-cover", animationStyle)} />
+
+              {/* "/images/about-image.png"
+              <img src={book.coverUrl} alt={book.title} className={clsx("h-full w-48 bg-cover", animationStyle)} /> */}
             </div>
           </button>
         ))}
