@@ -8,7 +8,7 @@ const Footer = () => {
       <span>
         <Image src="/images/horizontal_logo.png" alt="about image" width={200} height={30} />
       </span>
-      <p className='text-slate-600'>
+      <p className='text-slate-600' style={{textAlign: 'right'}}>
         All rights reserved.
       </p>
      </div>
