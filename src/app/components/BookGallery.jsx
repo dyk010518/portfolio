@@ -48,8 +48,8 @@ const BookGalley = () => {
         </defs>
       </svg>
 
-      <div role="list" className="flex flex-row justify-center space-x-4">
-        {books.slice(0,30).map((book, index) => (
+      <ul className="flex flex-row justify-center space-x-4">
+        {books.slice(0,10).map((book, index) => (
           <Book
             book={book}
             index={index}
@@ -57,7 +57,18 @@ const BookGalley = () => {
             setFocusedIndex={setFocusedIndex}
           ></Book>
         ))}
-      </div>
+      </ul>
+      <ul className="flex flex-row justify-center space-x-4">
+        {books.slice(10,20).map((book, index) => (
+          <Book
+            book={book}
+            index={index+10}
+            focusedIndex={focusedIndex}
+            setFocusedIndex={setFocusedIndex}
+          ></Book>
+        ))}
+      </ul>
+
     </>
   )
 }

@@ -17,16 +17,16 @@ const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
         }
         }}
         className={clsx(
-        "flex shrink-0 flex-row items-center outline-none",
-        focusedIndex !== index && "hover:-translate-y-4 focus-visible:-translate-y-4",
-        focusedIndex === index ? "basis-60" : "basis-12",
-        animationStyle
+            "flex shrink-0 flex-row items-center outline-none",
+            focusedIndex !== index && "hover:-translate-y-4 focus-visible:-translate-y-4",
+            focusedIndex === index ? "basis-30 md:basis-60" : "basis-6 md:basis-12",
+            animationStyle
         )}
         style={{ perspective: "1000px", WebkitPerspective: "1000px" }}
     >
         <div
         className={clsx(
-            "z-50 h-full w-[44px] shrink-0 origin-right py-4 brightness-[0.80] contrast-[2.00]",
+            "z-50 h-full w-[24px] md:w-[44px] shrink-0 origin-right py-2 md:py-4 brightness-[0.80] contrast-[2.00]",
             animationStyle
         )}
         style={{
@@ -44,8 +44,8 @@ const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
         />
         <h2 
             className={clsx(
-            "m-auto font-medium",
-            book.title.length > 30 ? "text-xs" : (book.title.length > 15 ? "text-base" : "text-xl"),
+            "m-auto",
+            book.title.length > 30 ? "text-xxxs md:text-sm" : (book.title.length > 15 ? "text-xxs md:text-base" : "text-xs md:text-xl"),
             )}
             style={{ writingMode: "vertical-lr" }}
         >
@@ -54,13 +54,13 @@ const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
         </div>
         <div
         className={clsx(
-            "relative z-10 h-72 shrink-0 origin-left overflow-hidden border-gray-900 brightness-[0.80] contrast-[2.00]",
+            "relative z-10 h-44 md:h-76 shrink-0 origin-left overflow-hidden border-gray-900 brightness-[0.80] contrast-[2.00]",
             animationStyle
         )}
         style={{
             transformStyle: "preserve-3d",
             transform: `translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(${
-            focusedIndex === index ? "30deg" : "90deg"
+            focusedIndex === index ? "35deg" : "90deg"
             }) rotateZ(0deg) skew(0deg, 0deg)`,
         }}
         >
@@ -76,7 +76,7 @@ const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
             }}
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`/images/books/${image_file}.png`} alt={book.title} className={clsx("h-full w-48 bg-cover", animationStyle)} />
+        <img src={`/images/books/${image_file}.png`} alt={book.title} className={clsx("h-full w-30 md:w-48 bg-cover", animationStyle)} />
         </div>
     </button>
   )
