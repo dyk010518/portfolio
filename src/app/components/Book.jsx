@@ -1,6 +1,10 @@
+import clsx from "clsx";
 import React from 'react'
 
-const Book = () => {
+const animationStyle = "transition-all duration-500 ease will-change-auto"
+
+const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
+  const image_file = book.title.replace(/\s+/g, '_').toLowerCase();
   return (
     <button
         role="listitem"
@@ -72,7 +76,7 @@ const Book = () => {
             }}
         />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/images/about-image.png" alt={book.title} className={clsx("h-full w-48 bg-cover", animationStyle)} />
+        <img src={`/images/books/${image_file}.png`} alt={book.title} className={clsx("h-full w-48 bg-cover", animationStyle)} />
         </div>
     </button>
   )
