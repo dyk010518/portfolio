@@ -1,14 +1,44 @@
 "use client";
 import clsx from "clsx";
-import { useState } from "react";
-import { Books } from "./Books"
+import { useState, useEffect } from "react";
 
 
 const animationStyle = "transition-all duration-500 ease will-change-auto"
 
 const BookGalley = () => {
   const [focusedIndex, setFocusedIndex] = useState(-1);
-  console.log(Books);
+  const [books, setBooks] = useState(null);
+  const [loading, setLoading] = useState(true);
+//   console.log(Books);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/getBooks');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const result = await response.json();
+        setBooks(JSON.parse(result));
+        // setBooks(JSON.parse(JSON.stringify(result)));
+      } catch (error) {
+        return <p>Error...</p>;
+      } finally {
+        setLoading(false);
+        console.log("Succeeded");
+      }
+    };
+
+    fetchData();
+  }, []); // The empty dependency array ensures that this effect runs only once, similar to componentDidMount
+
+  // Render loading state
+  if (loading) {
+      return <p>Loading...</p>;
+  }
+  console.log(books);
+  console.log("Why not here");
 
   return (
     <>
@@ -22,8 +52,9 @@ const BookGalley = () => {
           </filter>
         </defs>
       </svg>
+
       <div role="list" className="flex flex-row justify-center space-x-4">
-        {Books.map((book, index) => (
+        {books.slice(5,10).map((book, index) => (
           <button
             role="listitem"
             key={book.title}
@@ -60,7 +91,13 @@ const BookGalley = () => {
                 aria-hidden
                 className="pointer-events-none fixed top-0 left-0 z-50 h-full w-full opacity-40 [filter:url(#paper)]"
               />
-              <h2 className="text-md m-auto font-medium" style={{ writingMode: "vertical-lr" }}>
+              <h2 
+                className={clsx(
+                  "m-auto font-medium",
+                  book.title.length > 30 ? "text-xs" : (book.title.length > 15 ? "text-base" : "text-xl"),
+                )}
+                style={{ writingMode: "vertical-lr" }}
+              >
                 {book.title}
               </h2>
             </div>
@@ -89,9 +126,6 @@ const BookGalley = () => {
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/images/about-image.png" alt={book.title} className={clsx("h-full w-48 bg-cover", animationStyle)} />
-
-              {/* "/images/about-image.png"
-              <img src={book.coverUrl} alt={book.title} className={clsx("h-full w-48 bg-cover", animationStyle)} /> */}
             </div>
           </button>
         ))}
