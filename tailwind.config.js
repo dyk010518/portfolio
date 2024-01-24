@@ -21,6 +21,18 @@ module.exports = {
       flexBasis: {
         '30': '7.5rem',
       },
+      fontSize: {
+        xxxs: '0.5rem',
+        xxs: '0.7rem',
+        xs: '0.8rem',
+        sm: '0.9rem',
+        base: '1rem',
+        xl: '1.25rem',
+        '2xl': '1.563rem',
+        '3xl': '1.953rem',
+        '4xl': '2.441rem',
+        '7xl': '4.2rem',
+      }
     },
     colors: {
       ...colors,
@@ -28,21 +40,6 @@ module.exports = {
       secondary: colors.pink,
       tertiary: colors.blue,
     },
-    fontSize: {
-      xxxs: '0.5rem',
-      xxs: '0.7rem',
-      xs: '0.8rem',
-      sm: '0.9rem',
-      base: '1rem',
-      xl: '1.25rem',
-      '2xl': '1.563rem',
-      '3xl': '1.953rem',
-      '4xl': '2.441rem',
-      '5xl': '3.052rem',
-      '6xl': '3.6rem',
-      '7xl': '4.2rem',
-      '10xl': '10rem',
-    }
   },
   plugins: [],
 }
