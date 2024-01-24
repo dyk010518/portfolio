@@ -1,12 +1,18 @@
 "use client";
 import { useState, useEffect } from "react";
 import Book from "./Book"
+import { getRowsOfBook } from "../utils/utils"
+import { useWindowSize } from "@uidotdev/usehooks";
+import { motion } from 'framer-motion';
+
 
 
 const BookGalley = () => {
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [books, setBooks] = useState(null);
   const [loading, setLoading] = useState(true);
+  const size = useWindowSize();
+  const booksPerRow = size.width < 768 ? 6 : 12;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,7 +29,6 @@ const BookGalley = () => {
         return <p>Error...</p>;
       } finally {
         setLoading(false);
-        console.log("Succeeded");
       }
     };
 
@@ -32,43 +37,57 @@ const BookGalley = () => {
 
   // Render loading state
   if (loading) {
-      return <p>Loading...</p>;
+      return (
+        <motion.div
+          variants={{initial: { y: 0, opacity: 0 }, final: { y: 0, opacity: 1},}} 
+          initial="initial" 
+          whileInView="final"
+          transition={{ duration: 0.7, delay: 0.3 }}
+          className="flex justify-center text-center h-screen"
+        >
+          <h1 className="text-white mt-32 text-4xl sm:text-7xl lg:text-8xl lg:leading-normal font-extrabold">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-600">
+              Welcome to My Bookshelf{" "}
+            </span>
+          </h1>
+        </motion.div>)
   }
 
   return (
     <>
-      <svg className="invisible absolute inset-0">
-        <defs>
-          <filter id="paper" x="0%" y="0%" width="100%" height="100%">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="8" result="noise" />
-            <feDiffuseLighting in="noise" lightingColor="white" surfaceScale="1" result="diffLight">
-              <feDistantLight azimuth="45" elevation="35" />
-            </feDiffuseLighting>
-          </filter>
-        </defs>
-      </svg>
-
-      <ul className="flex flex-row justify-center space-x-4">
-        {books.slice(0,10).map((book, index) => (
-          <Book
-            book={book}
-            index={index}
-            focusedIndex={focusedIndex}
-            setFocusedIndex={setFocusedIndex}
-          ></Book>
-        ))}
-      </ul>
-      <ul className="flex flex-row justify-center space-x-4">
-        {books.slice(10,20).map((book, index) => (
-          <Book
-            book={book}
-            index={index+10}
-            focusedIndex={focusedIndex}
-            setFocusedIndex={setFocusedIndex}
-          ></Book>
-        ))}
-      </ul>
-
+      <motion.h2 
+        variants={{initial: { opacity: 0 }, final: { opacity: 1},}} 
+        initial="initial" 
+        animate="final"
+        transition={{ duration: 1, delay: 0 }}
+        className='text-center text-4xl md:text-5xl font-bold text-white mt-4 mb-8 md:mb-12'
+      >
+        Daniel&apos;s Bookshelf
+      </motion.h2>
+      {getRowsOfBook(books, booksPerRow).map((row, rowIndex) => {
+        return (
+          <motion.div
+            variants={{initial: { y: 100, opacity: 0 }, final: { y: 0, opacity: 1},}} 
+            initial="initial" 
+            animate="final"
+            transition={{ duration: 0.7, delay: 1.2 + rowIndex * 0.8 }}
+          >
+            <ul className="flex flex-row justify-center space-x-4">
+              {row.map((book, index) => (
+                <Book
+                    book={book}
+                    index={index + rowIndex*booksPerRow}
+                    focusedIndex={focusedIndex}
+                    setFocusedIndex={setFocusedIndex}
+                ></Book>
+              ))}
+            </ul> 
+            <div className="flex justify-center">
+              <div className="flex h-5 w-200 bg-gray-500 mb-10 justify-center"/>
+            </div>
+          </motion.div>
+        )
+      })}
     </>
   )
 }

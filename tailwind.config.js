@@ -16,6 +16,7 @@ module.exports = {
       },
       spacing: {
         '76': '19rem',
+        '200': '60rem',
       },
       flexBasis: {
         '30': '7.5rem',
@@ -38,6 +39,9 @@ module.exports = {
       '3xl': '1.953rem',
       '4xl': '2.441rem',
       '5xl': '3.052rem',
+      '6xl': '3.6rem',
+      '7xl': '4.2rem',
+      '10xl': '10rem',
     }
   },
   plugins: [],

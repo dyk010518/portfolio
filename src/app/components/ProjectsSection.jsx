@@ -55,7 +55,7 @@ const projectsData = [
 const ProjectsSection = () => {
   const [tag, setTag] = useState("All");
   const ref = useRef(null);
-//   const isInView = useInView(ref, { once: true });
+  const isInView = useInView(ref, { once: true });
 
   const handleTagChange = (newTag) => {
     setTag(newTag);
@@ -72,6 +72,7 @@ const ProjectsSection = () => {
 
   return (
     <section id="projects">
+        {console.log(isInView)}
         <h2 className='text-center text-4xl font-bold text-white mt-4 mb-8 md:mb-12'>
             My Projects
         </h2>
