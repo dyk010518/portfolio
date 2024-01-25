@@ -6,7 +6,7 @@ const MongoClient = mongo.MongoClient;
 const uri = process.env.MONGODB_URI;
 
 export async function GET(req, res) {
-    const client = new MongoClient("mongodb+srv://dyk010518:Dyk0824!@books.fbsxfl1.mongodb.net/?retryWrites=true&w=majority");
+    const client = new MongoClient(uri);
 
     await client.connect();
     console.log('Connected successfully to server : update, find or insertData');
