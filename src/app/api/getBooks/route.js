@@ -4,6 +4,7 @@ const mongo = require('mongodb');
 const MongoClient = mongo.MongoClient;
 
 const uri = process.env.MONGODB_URI;
+const uri_2 = `mongodb+srv://dyk010518:${process.env.MONGODB_PASSWORD}@books.fbsxfl1.mongodb.net/?retryWrites=true&w=majority`
 
 export async function GET(req, res) {
     const client = new MongoClient(uri);
