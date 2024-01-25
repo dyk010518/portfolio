@@ -67,6 +67,7 @@ const BookGalley = () => {
       {getRowsOfBook(books, booksPerRow).map((row, rowIndex) => {
         return (
           <motion.div
+            key={rowIndex}
             variants={{initial: { y: 100, opacity: 0 }, final: { y: 0, opacity: 1},}} 
             initial="initial" 
             animate="final"
@@ -75,6 +76,7 @@ const BookGalley = () => {
             <ul className="flex flex-row justify-center space-x-4">
               {row.map((book, index) => (
                 <Book
+                    key={index}
                     book={book}
                     index={index + rowIndex*booksPerRow}
                     focusedIndex={focusedIndex}
