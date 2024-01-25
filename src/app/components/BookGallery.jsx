@@ -24,7 +24,6 @@ const BookGalley = () => {
         }
         const result = await response.json();
         setBooks(JSON.parse(result));
-        // setBooks(JSON.parse(JSON.stringify(result)));
       } catch (error) {
         return <p>Error...</p>;
       } finally {
@@ -64,7 +63,7 @@ const BookGalley = () => {
       >
         Daniel&apos;s Bookshelf
       </motion.h2>
-      {getRowsOfBook(books, booksPerRow).map((row, rowIndex) => {
+      {books && getRowsOfBook(books, booksPerRow).map((row, rowIndex) => {
         return (
           <motion.div
             key={rowIndex}
