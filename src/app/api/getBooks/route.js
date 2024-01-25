@@ -1,13 +1,10 @@
 import { NextResponse } from 'next/server';
-// import { MongoClient } from 'mongodb';
-const mongo = require('mongodb');
-const MongoClient = mongo.MongoClient;
+import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGODB_URI;
-const uri_2 = `mongodb+srv://dyk010518:${process.env.MONGODB_PASSWORD}@books.fbsxfl1.mongodb.net/?retryWrites=true&w=majority`
+const uri = process.env.NEXT_PUBLIC_MONGODB_URI;
 
 export async function GET(req, res) {
-    const client = new MongoClient(uri_2);
+    const client = new MongoClient(uri);
 
     await client.connect();
     console.log('Connected successfully to server : update, find or insertData');
