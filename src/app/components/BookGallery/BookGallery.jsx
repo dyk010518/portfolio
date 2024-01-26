@@ -31,8 +31,8 @@ const BookGalley = () => {
     const fetchData = async () => {
       try {
         setLoading(true);
+        await delay(2000);
         const response = await fetch('/api/getBooks');
-        delay(2000);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
@@ -55,9 +55,7 @@ const BookGalley = () => {
   const booksPerRow = size.width < 768 ? 6 : 12;
   
   const filteredBooks = books && filterBooks(books, genres);
-
   const sortedBooks = filteredBooks && sortBooks(filteredBooks, orderBy);
-
 
   return (
     <>
