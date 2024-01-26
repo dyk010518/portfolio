@@ -6,7 +6,7 @@ import ProjectsSection from './components/ProjectsSection'
 import EmailSection from './components/EmailSection'
 import Footer from './components/Footer'
 import AchievementsSection from './components/AchievementsSection'
-import BookGalley from './components/BookGallery'
+import BookGalley from './components/BookGallery/BookGallery'
 
 export default function Home() {
   return (

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Navbar from "../components/Navbar"
 import Footer from '../components/Footer'
-import BookGalley from '../components/BookGallery'
+import BookGalley from '../components/BookGallery/BookGallery'
 
 export default function Page() {
   return (
