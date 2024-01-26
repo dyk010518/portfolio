@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getRowsOfBook, sortBooks } from "../../utils/utils"
+import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks } from "../../utils/utils"
 import { useWindowSize } from "@uidotdev/usehooks";
 import { motion } from 'framer-motion';
 import BookHeader from "./BookHeader";
 import Book from "./Book"
 import DropdownButton from "../DropdownButton";
+import Checkbox from '../Checkbox'
 
 const orderOptions = [
   "Rating (highest)", 
@@ -14,13 +15,16 @@ const orderOptions = [
   "Alphabetical (z-a)", 
   "Read Date (newest)", 
   "Read Date (oldest)",
-]
+];
 
 const BookGalley = () => {
+
   const [focusedIndex, setFocusedIndex] = useState(-1);
   const [books, setBooks] = useState(null);
   const [loading, setLoading] = useState(true);
   const [orderBy, setOrderBy] = useState(orderOptions[0]);
+  const [genreOptions, setGenreOptions] = useState(null);
+  const [genres, setGenres] = useState(null);
 
 
   useEffect(() => {
@@ -28,11 +32,15 @@ const BookGalley = () => {
       try {
         setLoading(true);
         const response = await fetch('/api/getBooks');
+        delay(2000);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
         const result = await response.json();
-        setBooks(JSON.parse(result));
+        const booksFormatted = JSON.parse(result);
+        setBooks(booksFormatted);
+        setGenreOptions(getGenres(booksFormatted));
+        setGenres(getGenres(booksFormatted));
       } catch (error) {
         return <p>Error...</p>;
       } finally {
@@ -45,7 +53,9 @@ const BookGalley = () => {
 
   const size = useWindowSize();
   const booksPerRow = size.width < 768 ? 6 : 12;
-  const filteredBooks = books && books;
+  
+  const filteredBooks = books && filterBooks(books, genres);
+
   const sortedBooks = filteredBooks && sortBooks(filteredBooks, orderBy);
 
 
@@ -53,11 +63,17 @@ const BookGalley = () => {
     <>
       <BookHeader isLoading={loading}/>
 
-      <DropdownButton 
+      {sortedBooks && <DropdownButton 
         options={orderOptions} 
         current={orderBy} 
         change={setOrderBy}
-      />
+      />}
+
+      {sortedBooks && <Checkbox 
+        options={genreOptions} 
+        current={genres} 
+        change={setGenres}
+      />}
 
       {sortedBooks && getRowsOfBook(sortedBooks, booksPerRow).map((row, rowIndex) => {
         return (
