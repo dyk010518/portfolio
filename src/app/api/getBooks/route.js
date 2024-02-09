@@ -5,7 +5,6 @@ const uri = process.env.MONGODB_URI;
 
 export async function GET() {
     const client = new MongoClient(uri);
-
     await client.connect();
     console.log('Connected successfully to server : update, find or insertData');
     const database = client.db("Books");
