@@ -26,7 +26,6 @@ const BookGalley = () => {
   const [genreOptions, setGenreOptions] = useState(null);
   const [genres, setGenres] = useState(null);
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -61,20 +60,22 @@ const BookGalley = () => {
     <>
       <BookHeader isLoading={loading}/>
 
-      {sortedBooks && <DropdownButton 
-        options={orderOptions} 
-        current={orderBy} 
-        change={setOrderBy}
-      />}
+      {sortedBooks && <ul className="flex flex-row justify-center">
+        <DropdownButton 
+          options={orderOptions} 
+          current={orderBy} 
+          change={setOrderBy}
+        />
+        <Checkbox 
+          options={genreOptions} 
+          current={genres} 
+          change={setGenres}
+        />
+      </ul>}
 
-      {sortedBooks && <Checkbox 
-        options={genreOptions} 
-        current={genres} 
-        change={setGenres}
-      />}
 
       {sortedBooks && getRowsOfBook(sortedBooks, booksPerRow).map((row, rowIndex) => {
-        return (
+        return (          
           <motion.div
             key={rowIndex}
             variants={{initial: { y: 100, opacity: 0 }, final: { y: 0, opacity: 1},}} 
