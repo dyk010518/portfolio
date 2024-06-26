@@ -39,7 +39,6 @@ const TAB_DATA = [
                 <li>Gates Scholar</li>
                 <li>QuestBridge Scholar</li>
                 <li>Alexa Developer</li>
-                <li>MIT Bachelors</li>
             </ul>
         ),
     }
