@@ -60,7 +60,7 @@ const BookGalley = () => {
     <>
       <BookHeader isLoading={loading}/>
 
-      {sortedBooks && <ul className="flex flex-row justify-center">
+      {/* {sortedBooks && <ul className="flex flex-row justify-center">
         <DropdownButton 
           options={orderOptions} 
           current={orderBy} 
@@ -71,7 +71,7 @@ const BookGalley = () => {
           current={genres} 
           change={setGenres}
         />
-      </ul>}
+      </ul>} */}
 
 
       {sortedBooks && getRowsOfBook(sortedBooks, booksPerRow).map((row, rowIndex) => {

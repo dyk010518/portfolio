@@ -12,7 +12,7 @@ const projectsData = [
         image: "/images/projects/1.png",
         tags: ["All", "Academic"],
         gitUrl: "",
-        previewUrl: "/https://www.csail.mit.edu/research/faircv",
+        previewUrl: "https://www.csail.mit.edu/research/faircv",
     },
     {
         id: 2,
@@ -20,8 +20,8 @@ const projectsData = [
         description: "Working with MIT Affective Computing group, I created 20+, 720p deepfake videos that were used to analyze visual and auditory perceptions by which AI models and humans use to detect deepfakes.",
         image: "/images/projects/2.png",
         tags: ["All", "Academic"],
-        gitUrl: "/https://arxiv.org/abs/2202.12883",
-        previewUrl: "/https://www.media.mit.edu/projects/detect-fakes/overview/",
+        gitUrl: "https://arxiv.org/abs/2202.12883",
+        previewUrl: "https://www.media.mit.edu/projects/detect-fakes/overview/",
     },
     {
         id: 3,
@@ -29,7 +29,7 @@ const projectsData = [
         description: "As part of the 2023 MIT GTL Program in Israel where my team led an entrepreneurship workshop in local Amal Networks schools, we created a website encapturing our experiences in a blog format.",
         image: "/images/projects/3.png",
         tags: ["All", "Personal"],
-        gitUrl: "/https://misti.mit.edu/mit-israel",
+        gitUrl: "https://misti.mit.edu/mit-israel",
         previewUrl: "https://gtlisrael2023.weebly.com/",
     },
     {
