@@ -21,8 +21,10 @@ const navLinks = [
     },
     {
         title: "Bookshelf",
-        path: "/bookshelf"
+        path: "/bookshelf",
     },
+    
+    
 ]
 
 const Navbar = () => {
