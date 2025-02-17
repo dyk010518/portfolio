@@ -122,6 +122,7 @@ const ProjectsSection = () => {
                         title={project.title}
                         description={project.description} 
                         imgUrl={project.image}
+                        paperUrl={project.paperUrl}
                         codeUrl={project.codeUrl}
                         previewUrl={project.previewUrl}
                     />
