@@ -11,8 +11,9 @@ const projectsData = [
         description: "For the MIT class \"TinyML and Efficient Deep Learning Computing\" (6.5940), our group applied the state of the art EfficientVIT segmentation model to classification of retail items as a downstream task.",
         image: "/images/projects/6.png",
         tags: ["All", "Academic"],
-        gitUrl: "",
-        previewUrl: "/files/6_5940_Final_Project_Paper.pdf",
+        paperUrl: "/files/6_5940_Final_Project_Paper.pdf",
+        previewUrl: "",
+        codeUrl: "",
     },
     {
         id: 5,
@@ -20,8 +21,9 @@ const projectsData = [
         description: "Working with MIT Decentralized Information Group (DIG), I leverage Label Free Concept Bottleneck Model (LF-CBM) and LLMs to improve fairness in modern image classification models.",
         image: "/images/projects/5.png",
         tags: ["All", "Academic"],
-        gitUrl: "https://www.csail.mit.edu/research/faircv",
-        previewUrl: "/files/SuperUROP_Final_Paper.pdf",
+        paperUrl: "/files/SuperUROP_Final_Paper.pdf",
+        previewUrl: "https://www.csail.mit.edu/research/faircv",
+        codeUrl: "",
     },
     {
         id: 4,
@@ -29,8 +31,9 @@ const projectsData = [
         description: "Working with MIT Affective Computing group, I created 20+, 720p deepfake videos that were used to analyze visual and auditory perceptions by which AI models and humans use to detect deepfakes.",
         image: "/images/projects/4.png",
         tags: ["All", "Academic"],
-        gitUrl: "https://arxiv.org/abs/2202.12883",
+        paperUrl: "https://arxiv.org/abs/2202.12883",
         previewUrl: "https://www.media.mit.edu/projects/detect-fakes/overview/",
+        codeUrl: "",
     },
     {
         id: 3,
@@ -38,8 +41,9 @@ const projectsData = [
         description: "As part of the 2023 MIT GTL Program in Israel where my team led an entrepreneurship workshop in local Amal Networks schools, we created a website encapturing our experiences in a blog format.",
         image: "/images/projects/3.png",
         tags: ["All", "Personal"],
-        gitUrl: "https://misti.mit.edu/mit-israel",
+        paperUrl: "",
         previewUrl: "https://gtlisrael2023.weebly.com/",
+        codeUrl: "",
     },
     {
         id: 2,
@@ -47,8 +51,9 @@ const projectsData = [
         description: "Want to see how much a stock is worth based on your key assumptions? Want to conduct this analysis using real-time market data? I developed a stock analyzing tool where one can easily calculate the fair value of a stock.",
         image: "/images/projects/2.png",
         tags: ["All", "Personal"],
-        gitUrl: "https://github.com/dyk010518/stock_analyzer",
+        paperUrl: "",
         previewUrl: "https://stock-analyzer-iota.vercel.app/",
+        codeUrl: "https://github.com/dyk010518/stock_analyzer",
     },
     {
         id: 1,
@@ -56,8 +61,9 @@ const projectsData = [
         description: "The website you see right here was coded by me using Next, Express, and Node. The website is easily customizable with different functional components and custom inputs.",
         image: "/images/projects/1.png",
         tags: ["All", "Personal"],
-        gitUrl: "https://github.com/dyk010518/portfolio",
+        paperUrl: "",
         previewUrl: "/",
+        codeUrl: "https://github.com/dyk010518/portfolio",
     },
 ]
 
@@ -116,7 +122,8 @@ const ProjectsSection = () => {
                         title={project.title}
                         description={project.description} 
                         imgUrl={project.image}
-                        gitUrl={project.gitUrl}
+                        paperUrl={project.paperUrl}
+                        codeUrl={project.codeUrl}
                         previewUrl={project.previewUrl}
                     />
                 </motion.li>
