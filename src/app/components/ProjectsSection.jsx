@@ -6,6 +6,16 @@ import { motion, useInView } from 'framer-motion';
 
 const projectsData = [
     {
+        id: 8,
+        title: "Musical Genre Classification",
+        description: "For the MIT class \"Advances in Computer Vision\" (6.8300), our group developed a state-of-the-art musical genre classifier that employs CNN + BiGRU architecture.",
+        image: "/images/projects/8.png",
+        tags: ["All", "Academic"],
+        paperUrl: "/files/Musical_Genre_Classification.pdf",
+        previewUrl: "",
+        codeUrl: "",
+    },
+    {
         id: 7,
         title: "LyricsBERT: Musical Recommendation",
         description: "For the MIT class \"Quantitative Methods for NLP\" (6.8611), we developed LyricsBERT, a transformer-based model that recommends music based on lyrics.",
