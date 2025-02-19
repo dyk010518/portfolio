@@ -6,6 +6,16 @@ import { motion, useInView } from 'framer-motion';
 
 const projectsData = [
     {
+        id: 7,
+        title: "LyricsBERT: Musical Recommendation",
+        description: "For the MIT class \"Quantitative Methods for NLP\" (6.8611), we developed LyricsBERT, a transformer-based model that recommends music based on lyrics.",
+        image: "/images/projects/7.png",
+        tags: ["All", "Academic"],
+        paperUrl: "/files/6_8611_final_report.pdf",
+        previewUrl: "/files/6_8611_final_poster.pdf",
+        codeUrl: "",
+    },
+    {
         id: 6,
         title: "EfficientVIT for Retail",
         description: "For the MIT class \"TinyML and Efficient Deep Learning Computing\" (6.5940), our group applied the state of the art EfficientVIT segmentation model to classification of retail items as a downstream task.",
