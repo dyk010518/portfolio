@@ -20,8 +20,8 @@ const projectsData = [
         description: "Working with MIT Decentralized Information Group (DIG), I leverage Label Free Concept Bottleneck Model (LF-CBM) and LLMs to improve fairness in modern image classification models.",
         image: "/images/projects/5.png",
         tags: ["All", "Academic"],
-        gitUrl: "",
-        previewUrl: "https://www.csail.mit.edu/research/faircv",
+        gitUrl: "https://www.csail.mit.edu/research/faircv",
+        previewUrl: "/files/SuperUROP_Final_Paper.pdf",
     },
     {
         id: 4,
