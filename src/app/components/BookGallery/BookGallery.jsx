@@ -4,9 +4,8 @@ import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks } from "../../u
 import { useWindowSize } from "@uidotdev/usehooks";
 import { motion } from 'framer-motion';
 import BookHeader from "./BookHeader";
+import BookFilter from "./BookFilter";
 import Book from "./Book"
-import DropdownButton from "../DropdownButton";
-import Checkbox from '../Checkbox'
 
 const orderOptions = [
   "Rating (highest)", 
@@ -25,7 +24,15 @@ const BookGalley = () => {
   const [orderBy, setOrderBy] = useState(orderOptions[0]);
   const [genreOptions, setGenreOptions] = useState(null);
   const [genres, setGenres] = useState(null);
+  const [sortedBooks, setSortedBooks] = useState(null);
 
+  useEffect(() => {
+    if (books) {
+      setSortedBooks(sortBooks(filterBooks(books, genres), orderBy));
+    }
+  }, [books, orderBy, genres]);
+
+  // Get the books data and set the loading to "false"
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -52,13 +59,20 @@ const BookGalley = () => {
 
   const size = useWindowSize();
   const booksPerRow = size.width < 768 ? 6 : 12;
-  
-  const filteredBooks = books && filterBooks(books, genres);
-  const sortedBooks = filteredBooks && sortBooks(filteredBooks, orderBy);
 
   return (
     <>
       <BookHeader isLoading={loading}/>
+
+      <BookFilter 
+        sortedBooks={sortedBooks}
+        orderOptions={orderOptions}
+        orderBy={orderBy}
+        setOrderBy={setOrderBy}
+        genreOptions={genreOptions}
+        genres={genres}
+        setGenres={setGenres}
+      />
 
       {/* {sortedBooks && <ul className="flex flex-row justify-center">
         <DropdownButton 
@@ -73,11 +87,10 @@ const BookGalley = () => {
         />
       </ul>} */}
 
-
       {sortedBooks && getRowsOfBook(sortedBooks, booksPerRow).map((row, rowIndex) => {
         return (          
           <motion.div
-            key={rowIndex}
+            key={`${genres}-${orderBy}-${rowIndex}`}
             variants={{initial: { y: 100, opacity: 0 }, final: { y: 0, opacity: 1},}} 
             initial="initial" 
             animate="final"
@@ -86,11 +99,11 @@ const BookGalley = () => {
             <ul className="flex flex-row justify-center space-x-4">
               {row.map((book, index) => (
                 <Book
-                    key={index}
-                    book={book}
-                    index={index + rowIndex*booksPerRow}
-                    focusedIndex={focusedIndex}
-                    setFocusedIndex={setFocusedIndex}
+                  key={index}
+                  book={book}
+                  index={index + rowIndex*booksPerRow}
+                  focusedIndex={focusedIndex}
+                  setFocusedIndex={setFocusedIndex}
                 ></Book>
               ))}
             </ul> 
@@ -100,6 +113,13 @@ const BookGalley = () => {
           </motion.div>
         )
       })}
+
+      {console.log(!sortedBooks?.length)}
+      {(!sortedBooks?.length) && (
+        <div className="h-[100vh] w-full opacity-0">
+          {/* Invisible body to keep the layout stable */}
+        </div>
+      )}
     </>
   )
 }

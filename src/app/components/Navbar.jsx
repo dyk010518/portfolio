@@ -37,7 +37,7 @@ const Navbar = () => {
                     href={"/"} 
                     className="text-2xl md:text-5xl text-white font-semibold"
                 >
-                    <Image src="/images/horizontal_logo.png" alt="about image" width={200} height={30} style={{opacity:0.8}}/>
+                    <Image src="/images/horizontal_logo.png" priority="true" alt="about image" width={200} height={30} style={{opacity:0.8}}/>
                 </Link>
                 <div className='mobile-menu block md:hidden'>
                     {

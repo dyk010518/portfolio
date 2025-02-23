@@ -13,15 +13,20 @@ const Checkbox = ( {options, current, change} ) => {
   };
 
   const clickAll = () => {
-    !all ? change(options) : change([]);
-    setAll(!all);
+    change(options);
+    setAll(true);
   }
 
   const clickOption = (option) => {
-    const currentOptions = [...current];
-    current.includes(option) ? currentOptions.splice(currentOptions.indexOf(option), 1) : currentOptions.push(option);
-    change(currentOptions);
-    setAll(false);
+    if (all) {
+      change([option,]);
+      setAll(false);
+    }else{
+      const currentOptions = [...current];
+      current.includes(option) ? currentOptions.splice(currentOptions.indexOf(option), 1) : currentOptions.push(option);
+      change(currentOptions);
+      setAll(false);
+    }
   }
 
   return (
@@ -48,8 +53,8 @@ const Checkbox = ( {options, current, change} ) => {
                   }}
                 >
                   <div className='flex flex-row'>
-                    {all ? <CheckIcon className='h-5 w-5 mr-2' /> : <div className='mr-7'/>}
-                    Select all
+                    <div className='mr-7'/>
+                    All
                   </div>
                 </a>
               </li>
@@ -65,7 +70,7 @@ const Checkbox = ( {options, current, change} ) => {
                       }}
                     >
                       <div className='flex flex-row'>
-                        {current.includes(option) ? <CheckIcon className='h-5 w-5 mr-2' /> : <div className='mr-7'/>}
+                        {current.includes(option) && !all ? <CheckIcon className='h-5 w-5 mr-2' /> : <div className='mr-7'/>}
                         {option}
                       </div>
                     </a>
