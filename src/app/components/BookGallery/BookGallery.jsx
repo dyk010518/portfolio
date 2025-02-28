@@ -58,7 +58,7 @@ const BookGalley = () => {
   }, []);
 
   const size = useWindowSize();
-  const booksPerRow = size.width < 768 ? 6 : 12;
+  const booksPerRow = size.width < 768 ? 6 : (size.width < 1024 ? 8 : 12);
 
   return (
     <>
@@ -108,7 +108,7 @@ const BookGalley = () => {
               ))}
             </ul> 
             <div className="flex justify-center">
-              <div className="flex h-5 w-200 bg-gray-500 mb-10 justify-center"/>
+              <div className="flex h-5 w-[80vw] bg-gray-500 mb-10 justify-center"/>
             </div>
           </motion.div>
         )
