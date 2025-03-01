@@ -21,7 +21,7 @@ const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptio
   
   return (
     <>
-      {sortedBooks && <ul className="flex flex-row justify-center">
+      {sortedBooks && <ul className="flex flex-row justify-center relative z-10">
         <DropdownButton 
           options={orderOptions} 
           current={orderBy} 
