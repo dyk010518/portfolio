@@ -74,19 +74,6 @@ const BookGalley = () => {
         setGenres={setGenres}
       />
 
-      {/* {sortedBooks && <ul className="flex flex-row justify-center">
-        <DropdownButton 
-          options={orderOptions} 
-          current={orderBy} 
-          change={setOrderBy}
-        />
-        <Checkbox 
-          options={genreOptions} 
-          current={genres} 
-          change={setGenres}
-        />
-      </ul>} */}
-
       {sortedBooks && getRowsOfBook(sortedBooks, booksPerRow).map((row, rowIndex) => {
         return (          
           <motion.div
