@@ -47,14 +47,14 @@ const Checkbox = ( {options, current, change} ) => {
               <li key="all">
                 <a
                   href="#"
-                  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:rounded-lg"
+                  className="block px-4 py-2 text-sm text-blue-700 hover:text-blue-400 hover:rounded-lg"
                   onClick={() => {
                     clickAll()
                   }}
                 >
                   <div className='flex flex-row'>
                     <div className='mr-7'/>
-                    All
+                    Reset
                   </div>
                 </a>
               </li>
