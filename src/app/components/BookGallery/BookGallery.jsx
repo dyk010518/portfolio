@@ -95,7 +95,7 @@ const BookGalley = () => {
               ))}
             </ul> 
             <div className="flex justify-center">
-              <div className="flex h-5 w-[80vw] bg-gray-500 mb-10 justify-center"/>
+              <div className="flex h-6 w-[80vw] bg-gray-500 mb-10 justify-center bg-[url('/images/marble-background.png')]"/>
             </div>
           </motion.div>
         )
