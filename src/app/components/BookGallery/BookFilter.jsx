@@ -31,6 +31,7 @@ const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptio
           options={genreOptions} 
           current={genres} 
           change={setGenres}
+          defaultDisplay="Genres"
         />
       </ul>}
     </>

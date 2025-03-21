@@ -1,12 +1,25 @@
 'use client'
-import React, { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { CheckIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 
 
 
-const Checkbox = ( {options, current, change} ) => {
+const Checkbox = ( {options, current, change, defaultDisplay} ) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [all, setAll] = useState(true);
+  const [reset, setReset] = useState(true);
+  const [displayMessage, setDisplayMessage] = useState(defaultDisplay);
+
+  useEffect(() => {
+    if (reset) {
+      setDisplayMessage(defaultDisplay);
+    } else if (current.length === 0) {
+      setDisplayMessage("---");
+    } else if (current.length === 1) {
+      setDisplayMessage(current[0]);
+    } else {
+      setDisplayMessage(`${current[0]} +${(current.length - 1).toString()}`);
+    }
+  }, [reset, current, defaultDisplay]);
 
   const toggleDropdown = () => {
       setIsOpen(!isOpen);
@@ -14,18 +27,18 @@ const Checkbox = ( {options, current, change} ) => {
 
   const clickAll = () => {
     change(options);
-    setAll(true);
+    setReset(true);
   }
 
   const clickOption = (option) => {
-    if (all) {
+    if (reset) {
       change([option,]);
-      setAll(false);
+      setReset(false);
     }else{
       const currentOptions = [...current];
       current.includes(option) ? currentOptions.splice(currentOptions.indexOf(option), 1) : currentOptions.push(option);
       change(currentOptions);
-      setAll(false);
+      setReset(false);
     }
   }
 
@@ -37,7 +50,7 @@ const Checkbox = ( {options, current, change} ) => {
           className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm inline-flex items-center"
           onClick={toggleDropdown}
         >
-          Genres
+          {displayMessage}
           {isOpen ? <ChevronUpIcon className='h-3 w-5 pl-2' /> : <ChevronDownIcon className='h-3 w-5 pl-2' />}
         </button>
 
@@ -70,7 +83,7 @@ const Checkbox = ( {options, current, change} ) => {
                       }}
                     >
                       <div className='flex flex-row'>
-                        {current.includes(option) && !all ? <CheckIcon className='h-5 w-5 mr-2' /> : <div className='mr-7'/>}
+                        {current.includes(option) && !reset ? <CheckIcon className='h-5 w-5 mr-2' /> : <div className='mr-7'/>}
                         {option}
                       </div>
                     </a>
