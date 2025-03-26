@@ -5,35 +5,30 @@ import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks } from "../../u
 
 import { motion } from 'framer-motion';
 
-const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptions, genres, setGenres }) => {
-  const handleOrderChange = async (newOrder) => {
-    setOrderBy("Nonsense")
-    await delay(300)
-    setOrderBy(newOrder)
-  }
-
-  const handleGenresChange = async (newGenres) => {
-    setGenres([]);
-    await delay(100)
-    setGenres(newGenres)
-  }
-  
-  
+const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptions, genres, setGenres }) => {  
   return (
     <>
-      {sortedBooks && <ul className="flex flex-row justify-center relative z-10">
-        <DropdownButton 
-          options={orderOptions} 
-          current={orderBy} 
-          change={setOrderBy}
-        />
-        <Checkbox 
-          options={genreOptions} 
-          current={genres} 
-          change={setGenres}
-          defaultDisplay="Genres"
-        />
-      </ul>}
+      {sortedBooks && 
+        <motion.div 
+          variants={{initial: { opacity: 0 }, final: { opacity: 1},}} 
+          initial="initial" 
+          animate="final"
+          transition={{ duration: 1, delay: 0 }}
+          className="flex flex-row justify-center items-center relative gap-2 py-6 z-10"
+        >
+          <DropdownButton 
+            options={orderOptions} 
+            current={orderBy} 
+            change={setOrderBy}
+          />
+          <Checkbox 
+            options={genreOptions} 
+            current={genres} 
+            change={setGenres}
+            defaultDisplay="Genres"
+          />
+        </motion.div>
+      }
     </>
   )
 }
