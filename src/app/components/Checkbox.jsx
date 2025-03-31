@@ -1,13 +1,27 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { CheckIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 
 
 
-const Checkbox = ( {options, current, change, defaultDisplay} ) => {
+const Checkbox = ( {options, current, change, defaultDisplay, setFocusedIndex} ) => {
   const [isOpen, setIsOpen] = useState(false);
   const [reset, setReset] = useState(true);
   const [displayMessage, setDisplayMessage] = useState(defaultDisplay);
+
+  const checkboxRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (checkboxRef.current && !checkboxRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     if (reset) {
@@ -21,9 +35,15 @@ const Checkbox = ( {options, current, change, defaultDisplay} ) => {
     }
   }, [reset, current, defaultDisplay]);
 
-  const toggleDropdown = () => {
+  const toggleCheckbox = () => {
       setIsOpen(!isOpen);
+      setFocusedIndex(-1);
   };
+
+  const closeCheckbox = () => {
+    setIsOpen(false);
+    setFocusedIndex(-1);
+  }
 
   const clickReset = () => {
     change(options);
@@ -34,7 +54,7 @@ const Checkbox = ( {options, current, change, defaultDisplay} ) => {
     if (reset) {
       change([option,]);
       setReset(false);
-    }else{
+    } else {
       const currentOptions = [...current];
       current.includes(option) ? currentOptions.splice(currentOptions.indexOf(option), 1) : currentOptions.push(option);
       change(currentOptions);
@@ -44,11 +64,11 @@ const Checkbox = ( {options, current, change, defaultDisplay} ) => {
 
   return (
     <div className='w-full py-6 pb-8'>
-      <div className="relative inline-block">
+      <div className="relative inline-block" ref={checkboxRef}>
         <button
           type="button"
-          className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue=-300 font-medium rounded-lg text-sm inline-flex items-center"
-          onClick={toggleDropdown}
+          className="px-4 py-2 text-white border-2 border-primary-500 hover:bg-primary-500 focus:ring-4 focus:outline-none focus:ring-primary-900 font-medium text-sm inline-flex items-center whitespace-nowrap"
+          onClick={toggleCheckbox}
         >
           {displayMessage}
           {isOpen ? <ChevronUpIcon className='h-3 w-5 pl-2' /> : <ChevronDownIcon className='h-3 w-5 pl-2' />}
@@ -60,9 +80,10 @@ const Checkbox = ( {options, current, change, defaultDisplay} ) => {
               <li key="all">
                 <a
                   href="#"
-                  className="block px-4 py-2 text-sm text-blue-700 hover:text-blue-400 hover:rounded-lg"
+                  className="block px-4 py-2 text-sm text-primary-600 hover:text-primary-300 hover:rounded-lg"
                   onClick={() => {
                     clickReset()
+                    closeCheckbox()
                   }}
                 >
                   <div className='flex flex-row'>

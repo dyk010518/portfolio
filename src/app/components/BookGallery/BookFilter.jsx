@@ -5,7 +5,7 @@ import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks } from "../../u
 
 import { motion } from 'framer-motion';
 
-const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptions, genres, setGenres }) => {  
+const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptions, genres, setGenres, setFocusedIndex }) => {  
   return (
     <motion.div 
       variants={{ initial: { opacity: 0 }, final: { opacity: 1 } }} 
@@ -14,17 +14,19 @@ const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptio
       transition={{ duration: 1, delay: 0 }}
       className="w-full flex justify-center py-6"
     >
-      <div className="flex flex-row items-center space-x-4 relative z-10">
+      <div className="flex flex-row items-center space-x-20 relative z-10">
         <DropdownButton 
           options={orderOptions} 
           current={orderBy} 
           change={setOrderBy}
+          setFocusedIndex={setFocusedIndex}
         />
         <Checkbox 
           options={genreOptions} 
           current={genres} 
           change={setGenres}
           defaultDisplay="Genres"
+          setFocusedIndex={setFocusedIndex}
         />
       </div>
     </motion.div>

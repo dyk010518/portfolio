@@ -74,6 +74,7 @@ const BookGalley = () => {
             genreOptions={genreOptions}
             genres={genres}
             setGenres={setGenres}
+            setFocusedIndex={setFocusedIndex}
           />
 
           {sortedBooks && getRowsOfBook(sortedBooks, booksPerRow).map((row, rowIndex) => {

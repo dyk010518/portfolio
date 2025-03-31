@@ -1,25 +1,41 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 
 
-const DropdownButton = ( {options, current, change} ) => {
+const DropdownButton = ( {options, current, change, setFocusedIndex} ) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleDropdown = () => {
       setIsOpen(!isOpen);
+      setFocusedIndex(-1);
   };
 
   const closeDropdown = () => {
       setIsOpen(false);
+      setFocusedIndex(-1);
   };
 
   return (
     <div className='w-full py-6 pb-8'>
-      <div className="relative inline-block">
+      <div className="relative inline-block" ref={dropdownRef}>
         <button
           type="button"
-          className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm inline-flex items-center"
+          className="px-4 py-2 text-white border-2 border-primary-500 hover:bg-primary-500 focus:ring-4 focus:outline-none focus:ring-primary-900 font-medium text-sm inline-flex items-center whitespace-nowrap"
           onClick={toggleDropdown}
         >
           {current} 

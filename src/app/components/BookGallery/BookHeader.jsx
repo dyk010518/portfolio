@@ -25,7 +25,7 @@ const BookHeader = ({ isLoading }) => {
         initial="initial" 
         animate="final"
         transition={{ duration: 1, delay: 0 }}
-        className='text-center text-4xl md:text-5xl font-bold text-white mt-4 mb-8 md:mb-12'
+        className='text-center text-4xl md:text-5xl font-bold text-white mt-4 mb-4'
       >
         Daniel&apos;s Bookshelf
     </motion.h2>
