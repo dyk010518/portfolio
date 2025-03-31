@@ -25,7 +25,7 @@ const Checkbox = ( {options, current, change, defaultDisplay} ) => {
       setIsOpen(!isOpen);
   };
 
-  const clickAll = () => {
+  const clickReset = () => {
     change(options);
     setReset(true);
   }
@@ -47,7 +47,7 @@ const Checkbox = ( {options, current, change, defaultDisplay} ) => {
       <div className="relative inline-block">
         <button
           type="button"
-          className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm inline-flex items-center"
+          className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue=-300 font-medium rounded-lg text-sm inline-flex items-center"
           onClick={toggleDropdown}
         >
           {displayMessage}
@@ -62,7 +62,7 @@ const Checkbox = ( {options, current, change, defaultDisplay} ) => {
                   href="#"
                   className="block px-4 py-2 text-sm text-blue-700 hover:text-blue-400 hover:rounded-lg"
                   onClick={() => {
-                    clickAll()
+                    clickReset()
                   }}
                 >
                   <div className='flex flex-row'>
