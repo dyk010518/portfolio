@@ -64,48 +64,51 @@ const BookGalley = () => {
     <>
       <BookHeader isLoading={loading}/>
 
-      <BookFilter 
-        sortedBooks={sortedBooks}
-        orderOptions={orderOptions}
-        orderBy={orderBy}
-        setOrderBy={setOrderBy}
-        genreOptions={genreOptions}
-        genres={genres}
-        setGenres={setGenres}
-      />
+      {!loading && (
+        <>
+          <BookFilter 
+            sortedBooks={sortedBooks}
+            orderOptions={orderOptions}
+            orderBy={orderBy}
+            setOrderBy={setOrderBy}
+            genreOptions={genreOptions}
+            genres={genres}
+            setGenres={setGenres}
+          />
 
-      {sortedBooks && getRowsOfBook(sortedBooks, booksPerRow).map((row, rowIndex) => {
-        return (          
-          <motion.div
-            key={`${genres}-${orderBy}-${rowIndex}`}
-            variants={{initial: { y: 100, opacity: 0 }, final: { y: 0, opacity: 1},}} 
-            initial="initial" 
-            animate="final"
-            transition={{ duration: 0.7, delay: 1.2 + rowIndex * 0.8 }}
-          >
-            <ul className="flex flex-row justify-center space-x-4">
-              {row.map((book, index) => (
-                <Book
-                  key={index}
-                  book={book}
-                  index={index + rowIndex*booksPerRow}
-                  focusedIndex={focusedIndex}
-                  setFocusedIndex={setFocusedIndex}
-                ></Book>
-              ))}
-            </ul> 
-            <div className="flex justify-center">
-              <div className="flex h-6 w-[80vw] bg-gray-500 mb-10 justify-center bg-[url('/images/marble-background.png')]"/>
+          {sortedBooks && getRowsOfBook(sortedBooks, booksPerRow).map((row, rowIndex) => {
+            return (          
+              <motion.div
+                key={`${genres}-${orderBy}-${rowIndex}`}
+                variants={{initial: { y: 100, opacity: 0 }, final: { y: 0, opacity: 1},}} 
+                initial="initial" 
+                animate="final"
+                transition={{ duration: 0.7, delay: 1.2 + rowIndex * 0.8 }}
+              >
+                <ul className="flex flex-row justify-center space-x-4">
+                  {row.map((book, index) => (
+                    <Book
+                      key={index}
+                      book={book}
+                      index={index + rowIndex*booksPerRow}
+                      focusedIndex={focusedIndex}
+                      setFocusedIndex={setFocusedIndex}
+                    ></Book>
+                  ))}
+                </ul> 
+                <div className="flex justify-center">
+                  <div className="flex h-6 w-[80vw] bg-gray-500 mb-10 justify-center bg-[url('/images/marble-background.png')]"/>
+                </div>
+              </motion.div>
+            )
+          })}
+
+          {(!sortedBooks?.length) && (
+            <div className="h-[100vh] w-full opacity-0">
+              {/* Invisible body to keep the layout stable */}
             </div>
-          </motion.div>
-        )
-      })}
-
-      {console.log(!sortedBooks?.length)}
-      {(!sortedBooks?.length) && (
-        <div className="h-[100vh] w-full opacity-0">
-          {/* Invisible body to keep the layout stable */}
-        </div>
+          )}
+        </>
       )}
     </>
   )

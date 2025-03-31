@@ -7,14 +7,14 @@ import { motion } from 'framer-motion';
 
 const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptions, genres, setGenres }) => {  
   return (
-    <div className="w-full flex justify-center z-20">
-      <motion.div 
-        variants={{ initial: { opacity: 0 }, final: { opacity: 1 } }} 
-        initial="initial" 
-        animate="final"
-        transition={{ duration: 1, delay: 0 }}
-        className="flex flex-row items-center space-x-4 py-6"
-      >
+    <motion.div 
+      variants={{ initial: { opacity: 0 }, final: { opacity: 1 } }} 
+      initial="initial" 
+      animate="final"
+      transition={{ duration: 1, delay: 0 }}
+      className="w-full flex justify-center py-6"
+    >
+      <div className="flex flex-row items-center space-x-4 relative z-10">
         <DropdownButton 
           options={orderOptions} 
           current={orderBy} 
@@ -26,8 +26,8 @@ const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptio
           change={setGenres}
           defaultDisplay="Genres"
         />
-      </motion.div>
-    </div>
+      </div>
+    </motion.div>
   )
 }
 
