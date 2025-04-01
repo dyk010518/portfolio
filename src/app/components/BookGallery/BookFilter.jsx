@@ -14,7 +14,7 @@ const BookFilter = ({ sortedBooks, orderOptions, orderBy, setOrderBy, genreOptio
       transition={{ duration: 1, delay: 0 }}
       className="w-full flex justify-center py-6"
     >
-      <div className="flex flex-row items-center space-x-20 relative z-10">
+      <div className="flex flex-row items-center space-x-10 md:space-x-20 relative z-10">
         <DropdownButton 
           options={orderOptions} 
           current={orderBy} 
