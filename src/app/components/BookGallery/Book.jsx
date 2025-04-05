@@ -31,7 +31,7 @@ const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
             className={clsx(
                 "flex shrink-0 flex-row items-center outline-none",
                 focusedIndex !== index && "hover:-translate-y-4 focus-visible:-translate-y-4",
-                focusedIndex === index ? "basis-36 md:basis-60" : "basis-6 md:basis-12",
+                focusedIndex === index ? "basis-36 md:basis-56" : "basis-6 md:basis-12",
                 animationStyle
             )}
             style={{ perspective: "1000px", WebkitPerspective: "1000px" }}
