@@ -1,25 +1,41 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/solid';
 
 
-const DropdownButton = ( {options, current, change} ) => {
+const DropdownButton = ( {options, current, change, setFocusedIndex} ) => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const dropdownRef = useRef(null);
+  
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleDropdown = () => {
       setIsOpen(!isOpen);
+      setFocusedIndex(-1);
   };
 
   const closeDropdown = () => {
       setIsOpen(false);
+      setFocusedIndex(-1);
   };
 
   return (
     <div className='w-full py-6 pb-8'>
-      <div className="relative inline-block">
+      <div className="relative inline-block" ref={dropdownRef}>
         <button
           type="button"
-          className="px-4 py-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm inline-flex items-center"
+          className="book-filter-btn"
           onClick={toggleDropdown}
         >
           {current} 
@@ -27,14 +43,14 @@ const DropdownButton = ( {options, current, change} ) => {
         </button>
 
         {isOpen && (
-          <div className="origin-top-right absolute right-0 mt-2 w-44 rounded-lg  bg-white ring-1 ring-black ring-opacity-5">
+          <div className="book-filter-option">
             <ul role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
               {options.map((option, index) => {
                 return(
                   <li key={index}>
                     <a
                       href="#"
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:rounded-lg"
+                      className="block px-4 py-2 text-xs md:text-sm text-gray-700 hover:bg-gray-100 hover:rounded-lg"
                       onClick={() => {
                         closeDropdown()
                         change(option)
