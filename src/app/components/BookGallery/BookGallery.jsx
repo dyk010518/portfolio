@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import BookHeader from "./BookHeader";
 import BookFilter from "./BookFilter";
 import Book from "./Book"
+import BookCard from "./BookCard"
 
 const orderOptions = [
   "Rating (highest)", 
@@ -88,13 +89,23 @@ const BookGalley = () => {
               >
                 <ul className="flex flex-row justify-center space-x-4">
                   {row.map((book, index) => (
-                    <Book
-                      key={index}
-                      book={book}
-                      index={index + rowIndex*booksPerRow}
-                      focusedIndex={focusedIndex}
-                      setFocusedIndex={setFocusedIndex}
-                    ></Book>
+                    <>                
+                      <Book
+                        key={index}
+                        book={book}
+                        index={index + rowIndex*booksPerRow}
+                        focusedIndex={focusedIndex}
+                        setFocusedIndex={setFocusedIndex}
+                      ></Book>
+
+                      <BookCard
+                        key={index}
+                        book={book}
+                        index={index + rowIndex*booksPerRow}
+                        focusedIndex={focusedIndex}
+                        setFocusedIndex={setFocusedIndex}
+                      ></BookCard>
+                    </>
                   ))}
                 </ul> 
                 <div className="flex justify-center">
