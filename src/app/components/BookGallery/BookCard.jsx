@@ -1,31 +1,71 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 
-
 const BookCard = ({ book, index, focusedIndex, setFocusedIndex }) => {
-  if (index !== focusedIndex) return null
+  const [shouldRender, setShouldRender] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
+
+  useEffect(() => {
+    if (index === focusedIndex) {
+      setShouldRender(true);
+      setIsExiting(false);
+    }
+  }, [focusedIndex,]);
+
+  const handleClose = () => {
+    setIsExiting(true);
+  };
+
+  const handleAnimationComplete = () => {
+    if (isExiting) {
+      setShouldRender(false);
+      setFocusedIndex(-1);
+    }
+  };
+
+  if (!shouldRender) return null;
+
+  const backdropAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0 },
+  };
+
+  const cardAnimation = {
+    initial: { y: 500, opacity: 0 },
+    animate: { y: 0, opacity: 1 },
+    exit: { y: 500, opacity: 0 },
+  };
 
   return (
-    <motion.div 
-          variants={{ initial: { y: 500, opacity: 0 }, final: { y: 0, opacity: 1 } }} 
-          initial="initial" 
-          animate="final"
-          transition={{ duration: 1, delay: 0 }}
-          className="fixed inset-0 bg-black bg-opacity-70 z-50"
+    <motion.div
+      initial="initial"
+      animate={isExiting ? 'exit' : 'animate'}
+      variants={backdropAnimation}
+      transition={{ duration: 1 }}
+      onAnimationComplete={handleAnimationComplete}
+      className="fixed inset-0 z-20 flex justify-center items-center bg-black bg-opacity-70"
     >
-      <button
-        className="absolute top-8 right-8 border-slate-200 text-slate-400 hover:text-white hover:border-white"
-        onClick={() => setFocusedIndex(-1)}
+      <motion.div
+        initial="initial"
+        animate={isExiting ? 'exit' : 'animate'}
+        variants={cardAnimation}
+        transition={{ duration: 1 }}
+        className="relative bg-black border-2 border-primary-500 p-6 w-3/4"
       >
-         <XMarkIcon className='h-8 w-8' />
-      </button>
-      {/* Replace the div below with your actual BookCard content */}
-      {/* <div className="flex justify-center items-center h-full text-white text-xl">
-        BookCard
-      </div> */}
-    </motion.div> 
-  )
-}
+        <button
+          className="absolute top-8 right-8 border-slate-200 text-slate-400 hover:text-white hover:border-white"
+          onClick={handleClose}
+        >
+          <XMarkIcon className="h-8 w-8" />
+        </button>
+        <h2 className="text-xl font-semibold text-primary-700 mb-2">{book.title}</h2>
+        <p className="text-sm text-gray-600 mb-4">by {book.author}</p>
+        <p className="text-gray-800 text-sm">{book.description}</p>
+      </motion.div>
+    </motion.div>
+  );
+};
 
-export default BookCard
+export default BookCard;
