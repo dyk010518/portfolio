@@ -91,7 +91,7 @@ const BookGalley = () => {
                   {row.map((book, index) => (
                     <>                
                       <Book
-                        key={index}
+                        key={`book-${index + rowIndex*booksPerRow}`}
                         book={book}
                         index={index + rowIndex*booksPerRow}
                         focusedIndex={focusedIndex}
@@ -99,7 +99,7 @@ const BookGalley = () => {
                       ></Book>
 
                       <BookCard
-                        key={index}
+                        key={`bookcard-${index + rowIndex*booksPerRow}`}
                         book={book}
                         index={index + rowIndex*booksPerRow}
                         focusedIndex={focusedIndex}

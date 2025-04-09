@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import BookContent from './BookContent';
 
 const BookCard = ({ book, index, focusedIndex, setFocusedIndex }) => {
   const [shouldRender, setShouldRender] = useState(false);
@@ -45,7 +46,7 @@ const BookCard = ({ book, index, focusedIndex, setFocusedIndex }) => {
       variants={backdropAnimation}
       transition={{ duration: 1 }}
       onAnimationComplete={handleAnimationComplete}
-      className="fixed inset-0 z-20 flex justify-center items-center bg-black bg-opacity-70"
+      className="fixed inset-0 z-20 flex justify-center bg-black bg-opacity-70"
     >
       <motion.div
         initial="initial"
@@ -60,9 +61,7 @@ const BookCard = ({ book, index, focusedIndex, setFocusedIndex }) => {
         >
           <XMarkIcon className="h-8 w-8" />
         </button>
-        <h2 className="text-xl font-semibold text-primary-700 mb-2">{book.title}</h2>
-        <p className="text-sm text-gray-600 mb-4">by {book.author}</p>
-        <p className="text-gray-800 text-sm">{book.description}</p>
+        <BookContent book={book}/>
       </motion.div>
     </motion.div>
   );
