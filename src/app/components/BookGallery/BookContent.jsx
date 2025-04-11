@@ -39,16 +39,18 @@ const BookContent = ({ book }) => {
           />
         </div>
         <div className='lg:mr-8'>
-          <h2 className="text-xl font-semibold text-primary-400 mb-2">{book.title}</h2>
-          <p className="text-m text-gray-400 mb-4">by {book.author}</p>
+          <h2 className="text-4xl font-semibold text-primary-400">{book.title}</h2>
+          <p className="text-xl text-gray-200 mb-2">by {book.author}</p>
           <p className="text-gray-800 text-sm">{`${month} ${day}, ${year}`}</p>
           <div 
-            className={`text-[#121212] bg-primary-300 border-primary-300 rounded-lg border-2 px-2 py-1 text-xs font-semibold inline-flex items-center justify-center`}
+            className={`text-[#121212] bg-primary-300 border-primary-300 rounded-md border-2 px-2 text-xs font-semibold inline-flex items-center justify-center`}
           >
               {book.genre}
           </div>
           <p className={`text-sm font-semibold ${getClassColor(book.class)}`}>{book.rating.toFixed(1)} / 10.0</p>
-          <p className="text-[#ADB7BE] text-sm">{book.quote}</p>
+          <p className="text-[#ADB7BE] text-md">Favorite quote:</p>
+          <p className="text-[#ADB7BE] text-sm mb-4">{book.quote}</p>
+          <p className="text-[#ADB7BE] text-md">Comment:</p>
           <p className="text-[#ADB7BE] text-sm mb-10 whitespace-pre-line">
             {book.comment}
           </p>
