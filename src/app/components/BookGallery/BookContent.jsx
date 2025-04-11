@@ -15,7 +15,7 @@ const BookContent = ({ book }) => {
   return (
     <>
       <div className='lg:grid lg:grid-cols-[1fr_2fr] mt-16 gap-16'>
-        <div className='lg:ml-8'>
+        <div className='lg:ml-8 w-[50%] lg:w-full mx-auto mb-8 lg:mb-0'>
           <Image 
             src={`/images/books/${image_file}.png`}
             width={0}
