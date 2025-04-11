@@ -44,7 +44,7 @@ const BookCard = ({ book, index, focusedIndex, setFocusedIndex }) => {
       initial="initial"
       animate={isExiting ? 'exit' : 'animate'}
       variants={backdropAnimation}
-      transition={{ delay: 0.3, duration: 1 }}
+      transition={{ delay: 0.2, duration: 1 }}
       onAnimationComplete={handleAnimationComplete}
       className="fixed inset-0 z-20 flex justify-center bg-black bg-opacity-70"
     >
@@ -53,7 +53,7 @@ const BookCard = ({ book, index, focusedIndex, setFocusedIndex }) => {
         animate={isExiting ? 'exit' : 'animate'}
         variants={cardAnimation}
         transition={{ duration: 1 }}
-        className="relative bg-black border-2 border-primary-500 p-6 w-3/4"
+        className="absolute bg-black border-2 border-primary-500 p-6 w-3/4 top-32 bottom-32 overflow-hidden"
       >
         <button
           className="absolute top-8 right-8 border-slate-200 text-slate-400 hover:text-white hover:border-white"
@@ -61,7 +61,9 @@ const BookCard = ({ book, index, focusedIndex, setFocusedIndex }) => {
         >
           <XMarkIcon className="h-8 w-8" />
         </button>
-        <BookContent book={book}/>
+        <div className="overflow-y-auto max-h-full scrollbar-hide mb-16">
+          <BookContent book={book} />
+        </div>
       </motion.div>
     </motion.div>
   );
