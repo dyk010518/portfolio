@@ -30,9 +30,10 @@ const BookContent = ({ book }) => {
           <p className="text-gray-800 text-sm">{`${month} ${day}, ${year}`}</p>
           <p className="text-gray-800 text-sm">{book.genre}</p>
           <p className="text-gray-800 text-sm">{book.rating}</p>
-          <p className="text-gray-800 text-sm mb-10">{book.comment}</p>
-          <p className="text-gray-800 text-sm">{book.description}</p>
           <p className="text-gray-800 text-sm">{book.quote}</p>
+          <p className="text-gray-800 text-sm mb-10 whitespace-pre-line">
+            {book.comment}
+          </p>
         </div>
 
       </div>

@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks } from "../../utils/utils"
+import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks, rateBooks } from "../../utils/utils"
 import { useWindowSize } from "@uidotdev/usehooks";
 import { motion } from 'framer-motion';
 import BookHeader from "./BookHeader";
@@ -29,7 +29,7 @@ const BookGalley = () => {
 
   useEffect(() => {
     if (books) {
-      setSortedBooks(sortBooks(filterBooks(books, genres), orderBy));
+      setSortedBooks(sortBooks(filterBooks(rateBooks(books), genres), orderBy));
     }
   }, [books, orderBy, genres]);
 
