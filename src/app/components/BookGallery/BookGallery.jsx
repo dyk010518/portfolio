@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks } from "../../utils/utils"
+import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks, rateBooks } from "../../utils/utils"
 import { useWindowSize } from "@uidotdev/usehooks";
 import { motion } from 'framer-motion';
 import BookHeader from "./BookHeader";
 import BookFilter from "./BookFilter";
 import Book from "./Book"
+import BookCard from "./BookCard"
 
 const orderOptions = [
   "Rating (highest)", 
@@ -28,7 +29,7 @@ const BookGalley = () => {
 
   useEffect(() => {
     if (books) {
-      setSortedBooks(sortBooks(filterBooks(books, genres), orderBy));
+      setSortedBooks(sortBooks(filterBooks(rateBooks(books), genres), orderBy));
     }
   }, [books, orderBy, genres]);
 
@@ -86,15 +87,25 @@ const BookGalley = () => {
                 animate="final"
                 transition={{ duration: 0.7, delay: 1.2 + rowIndex * 0.8 }}
               >
-                <ul className="flex flex-row justify-center space-x-4">
+                <ul className="flex flex-row justify-center space-x-4 mt-8">
                   {row.map((book, index) => (
-                    <Book
-                      key={index}
-                      book={book}
-                      index={index + rowIndex*booksPerRow}
-                      focusedIndex={focusedIndex}
-                      setFocusedIndex={setFocusedIndex}
-                    ></Book>
+                    <>                
+                      <Book
+                        key={`book-${index + rowIndex*booksPerRow}`}
+                        book={book}
+                        index={index + rowIndex*booksPerRow}
+                        focusedIndex={focusedIndex}
+                        setFocusedIndex={setFocusedIndex}
+                      ></Book>
+
+                      {/* <BookCard
+                        key={`bookcard-${index + rowIndex*booksPerRow}`}
+                        book={book}
+                        index={index + rowIndex*booksPerRow}
+                        focusedIndex={focusedIndex}
+                        setFocusedIndex={setFocusedIndex}
+                      ></BookCard> */}
+                    </>
                   ))}
                 </ul> 
                 <div className="flex justify-center">
@@ -103,7 +114,14 @@ const BookGalley = () => {
               </motion.div>
             )
           })}
-
+          
+          {focusedIndex !== -1 && (
+            <BookCard
+              book={sortedBooks[focusedIndex]}
+              setFocusedIndex={setFocusedIndex}
+            />
+          )}
+          
           {(!sortedBooks?.length) && (
             <div className="h-[100vh] w-full opacity-0">
               {/* Invisible body to keep the layout stable */}

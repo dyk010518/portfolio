@@ -1,3 +1,4 @@
+const math = require('mathjs');
 
 export const getRowsOfBook = (books, booksPerRow) => {
   `
@@ -21,9 +22,9 @@ export const sortBooks = (filteredBooks, sortBy) => {
   `
   switch(sortBy){
     case "Rating (highest)":
-      return filteredBooks.sort((a,b) => (a.rating > b.rating) ? 1 : ((b.rating > a.rating) ? -1 : 0));
+      return filteredBooks.sort((a,b) => b.rating - a.rating);
     case "Rating (lowest)":
-      return filteredBooks.sort((a,b) => (a.rating > b.rating) ? -1 : ((b.rating > a.rating) ? 1 : 0));
+      return filteredBooks.sort((a,b) => a.rating - b.rating);
     case "Alphabetical (a-z)":
       return filteredBooks.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
     case "Alphabetical (z-a)":
@@ -63,4 +64,50 @@ export const filterBooks = (books, genres) => {
     genres.includes(each.genre) && filteredBooks.push(each);
   }
   return filteredBooks;
+}
+
+export const rateBooks = (books) => {
+  `
+  Given 'books', a list of books, returns the list of books with a new feature, "rating", a number that
+  represents the book's rating. Each book's rating is defined as follows:
+
+  - For books whose class is "good", they are linearly spaced for the rating from 6.7 to 10.0.
+  - For books whose class is "okay", they are linearly spaced for the rating from 3.4 to 6.6.
+  - For books whose class is "bad", they are linearly spaced for the rating from 0.1 to 3.3.
+  `
+  
+  // Helper function to assign ratings based on book class
+  const assignRatings = (books, minRating, maxRating) => {
+    const sortedBooks = books.sort((a, b) => b.ranking - a.ranking);
+    const ratings = linspace(minRating, maxRating, sortedBooks.length);
+    
+    return sortedBooks.map((book, index) => {
+      book.rating = ratings[index];
+      return book;
+    });
+  };
+
+  // Separate books into categories and assign ratings
+  const goodBooks = books.filter(book => book.class === "good");
+  const okayBooks = books.filter(book => book.class === "okay");
+  const badBooks = books.filter(book => book.class === "bad");
+
+  // Assign ratings for each category
+  const ratedGoodBooks = assignRatings(goodBooks, 6.7, 10.0);
+  const ratedOkayBooks = assignRatings(okayBooks, 3.4, 6.6);
+  const ratedBadBooks = assignRatings(badBooks, 0.1, 3.3);
+
+  // Combine all rated books
+  return [...ratedGoodBooks, ...ratedOkayBooks, ...ratedBadBooks];
+};
+
+const linspace = (start, stop, num) => {
+  const step = (stop - start) / (num - 1);
+  const result = [];
+
+  for (let i = 0; i < num; i++) {
+    result.push(start + step * i);
+  }
+
+  return result;
 }

@@ -58,3 +58,12 @@ body {
     ring-black 
     ring-opacity-5
 }
+
+/* hide scrollbar but keep scroll */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}

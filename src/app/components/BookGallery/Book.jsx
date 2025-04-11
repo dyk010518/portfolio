@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from 'react'
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 const animationStyle = "transition-all duration-500 ease will-change-auto"
 
@@ -22,11 +23,11 @@ const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
             role="listitem"
             key={book.title}
             onClick={() => {
-            if (index === focusedIndex) {
-                setFocusedIndex(-1)
-            } else {
-                setFocusedIndex(index)
-            }
+                if (index === focusedIndex) {
+                    setFocusedIndex(-1)
+                } else {
+                    setFocusedIndex(index)
+                }
             }}
             className={clsx(
                 "flex shrink-0 flex-row items-center outline-none",
