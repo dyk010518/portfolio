@@ -38,22 +38,22 @@ const BookContent = ({ book }) => {
             style={{ width: '100%', height: 'auto' }} // optional
           />
         </div>
-        <div className='lg:mr-8'>
+        <div className='lg:mr-8 m-4'>
           <h2 className="text-4xl font-semibold text-primary-400">{book.title}</h2>
           <p className="text-xl text-gray-200 mb-2">by {book.author}</p>
-          <p className="text-gray-800 text-sm">{`${month} ${day}, ${year}`}</p>
           <div 
-            className={`text-[#121212] bg-primary-300 border-primary-300 rounded-md border-2 px-2 text-xs font-semibold inline-flex items-center justify-center`}
+            className={`text-[#121212] bg-primary-300 rounded-md px-2 py-1 text-xs font-semibold inline-flex items-center justify-center mb-2`}
           >
               {book.genre}
           </div>
-          <p className={`text-sm font-semibold ${getClassColor(book.class)}`}>{book.rating.toFixed(1)} / 10.0</p>
-          <p className="text-[#ADB7BE] text-md">Favorite quote:</p>
+          <p className={`text-md font-semibold ${getClassColor(book.class)} mb-4`}>{book.rating.toFixed(1)} / 10.0</p>
+          <p className="text-gray-200 text-md">Favorite quote:</p>
           <p className="text-[#ADB7BE] text-sm mb-4">{book.quote}</p>
-          <p className="text-[#ADB7BE] text-md">Comment:</p>
-          <p className="text-[#ADB7BE] text-sm mb-10 whitespace-pre-line">
+          <p className="text-gray-200 text-md">Comment:</p>
+          <p className="text-[#ADB7BE] text-sm mb-4 whitespace-pre-line">
             {book.comment}
           </p>
+          <p className="text-gray-200 text-sm text-right">Read on {`${month} ${day}, ${year}`}</p>
         </div>
 
       </div>
