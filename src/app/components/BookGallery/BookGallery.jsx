@@ -98,13 +98,13 @@ const BookGalley = () => {
                         setFocusedIndex={setFocusedIndex}
                       ></Book>
 
-                      <BookCard
+                      {/* <BookCard
                         key={`bookcard-${index + rowIndex*booksPerRow}`}
                         book={book}
                         index={index + rowIndex*booksPerRow}
                         focusedIndex={focusedIndex}
                         setFocusedIndex={setFocusedIndex}
-                      ></BookCard>
+                      ></BookCard> */}
                     </>
                   ))}
                 </ul> 
@@ -114,7 +114,14 @@ const BookGalley = () => {
               </motion.div>
             )
           })}
-
+          
+          {focusedIndex !== -1 && (
+            <BookCard
+              book={sortedBooks[focusedIndex]}
+              setFocusedIndex={setFocusedIndex}
+            />
+          )}
+          
           {(!sortedBooks?.length) && (
             <div className="h-[100vh] w-full opacity-0">
               {/* Invisible body to keep the layout stable */}

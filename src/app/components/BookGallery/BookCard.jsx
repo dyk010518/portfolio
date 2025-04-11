@@ -1,59 +1,44 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { XMarkIcon } from '@heroicons/react/24/solid';
 import BookContent from './BookContent';
 
-const BookCard = ({ book, index, focusedIndex, setFocusedIndex }) => {
-  const [shouldRender, setShouldRender] = useState(false);
+const backdropVariants = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+
+const cardVariants = {
+  initial: { y: 500, opacity: 0 },
+  animate: { y: 0, opacity: 1 },
+  exit: { y: 500, opacity: 0 },
+};
+
+const BookCard = ({ book, setFocusedIndex }) => {
   const [isExiting, setIsExiting] = useState(false);
 
-  useEffect(() => {
-    if (index === focusedIndex) {
-      setShouldRender(true);
-      setIsExiting(false);
-    }
-  }, [focusedIndex,]);
-
-  const handleClose = () => {
-    setIsExiting(true);
-  };
+  const handleClose = () => setIsExiting(true);
 
   const handleAnimationComplete = () => {
-    if (isExiting) {
-      setShouldRender(false);
-      setFocusedIndex(-1);
-    }
-  };
-
-  if (!shouldRender) return null;
-
-  const backdropAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-  };
-
-  const cardAnimation = {
-    initial: { y: 500, opacity: 0 },
-    animate: { y: 0, opacity: 1 },
-    exit: { y: 500, opacity: 0 },
+    if (isExiting) setFocusedIndex(-1);
   };
 
   return (
     <motion.div
+      className="fixed inset-0 z-20 flex justify-center bg-black bg-opacity-70"
+      variants={backdropVariants}
       initial="initial"
       animate={isExiting ? 'exit' : 'animate'}
-      variants={backdropAnimation}
-      transition={{ delay: 0.2, duration: 1 }}
       onAnimationComplete={handleAnimationComplete}
-      className="fixed inset-0 z-20 flex justify-center bg-black bg-opacity-70"
+      transition={{ delay: 0.2, duration: 1 }}
     >
       <motion.div
+        className="absolute bg-black border-2 border-primary-500 p-6 w-3/4 top-32 bottom-32 overflow-hidden"
+        variants={cardVariants}
         initial="initial"
         animate={isExiting ? 'exit' : 'animate'}
-        variants={cardAnimation}
         transition={{ duration: 1 }}
-        className="absolute bg-black border-2 border-primary-500 p-6 w-3/4 top-32 bottom-32 overflow-hidden"
       >
         <button
           className="absolute top-8 right-8 border-slate-200 text-slate-400 hover:text-white hover:border-white"
