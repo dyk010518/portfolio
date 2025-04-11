@@ -39,8 +39,8 @@ const BookContent = ({ book }) => {
           />
         </div>
         <div className='lg:mr-8 m-4'>
-          <h2 className="text-4xl font-semibold text-primary-400">{book.title}</h2>
-          <p className="text-xl text-gray-200 mb-2">by {book.author}</p>
+          <h2 className="text-2xl lg:text-4xl font-semibold text-primary-400">{book.title}</h2>
+          <p className="text-lg lg:text-xl text-gray-200 mb-2">by {book.author}</p>
           <div 
             className={`text-[#121212] bg-primary-300 rounded-md px-2 py-1 text-xs font-semibold inline-flex items-center justify-center mb-2`}
           >
