@@ -87,7 +87,7 @@ const BookGalley = () => {
                 animate="final"
                 transition={{ duration: 0.7, delay: 1.2 + rowIndex * 0.8 }}
               >
-                <ul className="flex flex-row justify-center space-x-4">
+                <ul className="flex flex-row justify-center space-x-4 mt-8">
                   {row.map((book, index) => (
                     <>                
                       <Book

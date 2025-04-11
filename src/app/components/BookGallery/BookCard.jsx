@@ -44,7 +44,7 @@ const BookCard = ({ book, index, focusedIndex, setFocusedIndex }) => {
       initial="initial"
       animate={isExiting ? 'exit' : 'animate'}
       variants={backdropAnimation}
-      transition={{ duration: 1 }}
+      transition={{ delay: 0.3, duration: 1 }}
       onAnimationComplete={handleAnimationComplete}
       className="fixed inset-0 z-20 flex justify-center bg-black bg-opacity-70"
     >
