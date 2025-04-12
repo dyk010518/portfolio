@@ -11,8 +11,8 @@ import BookCard from "./BookCard"
 const orderOptions = [
   "Rating (highest)", 
   "Rating (lowest)", 
-  "Alphabetical (a-z)", 
-  "Alphabetical (z-a)", 
+  "Alphabetical (0-9a-z)", 
+  "Alphabetical (z-a9-0)", 
   "Read Date (newest)", 
   "Read Date (oldest)",
 ];

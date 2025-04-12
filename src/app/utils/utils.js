@@ -16,25 +16,19 @@ export const getRowsOfBook = (books, booksPerRow) => {
 }
 
 export const sortBooks = (filteredBooks, sortBy) => {
-  `
-  Given 'filteredBooks', a list of books already filtered by the genres, and 'sortBy', a criteria to sort the
-  book by, sortBooks returns the list of books that is sorted by the criteria
-  `
-  switch(sortBy){
-    case "Rating (highest)":
-      return filteredBooks.sort((a,b) => b.rating - a.rating);
-    case "Rating (lowest)":
-      return filteredBooks.sort((a,b) => a.rating - b.rating);
-    case "Alphabetical (a-z)":
-      return filteredBooks.sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0));
-    case "Alphabetical (z-a)":
-      return filteredBooks.sort((a,b) => (a.title > b.title) ? -1 : ((b.title > a.title) ? 1 : 0));
-    case "Read Date (newest)":
-      return filteredBooks.sort((a,b) => (a.finished > b.finished) ? -1 : ((b.finished > a.finished) ? 1 : 0));
-    case "Read Date (oldest)":
-      return filteredBooks.sort((a,b) => (a.finished > b.finished) ? 1 : ((b.finished > a.finished) ? -1 : 0));
-  }
-}
+  const sortStrategies = {
+    "Rating (highest)": (a, b) => b.rating - a.rating,
+    "Rating (lowest)": (a, b) => a.rating - b.rating,
+    "Alphabetical (0-9a-z)": (a, b) => a.title.localeCompare(b.title),
+    "Alphabetical (z-a9-0)": (a, b) => b.title.localeCompare(a.title),
+    "Read Date (newest)": (a, b) => new Date(b.finished) - new Date(a.finished),
+    "Read Date (oldest)": (a, b) => new Date(a.finished) - new Date(b.finished),
+  };
+
+  const sortFn = sortStrategies[sortBy];
+
+  return sortFn ? [...filteredBooks].sort(sortFn) : filteredBooks;
+};
 
 export const delay = (delayInms) => {
   `
