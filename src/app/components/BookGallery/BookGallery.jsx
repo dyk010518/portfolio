@@ -98,14 +98,6 @@ const BookGalley = () => {
                         focusedIndex={focusedIndex}
                         setFocusedIndex={setFocusedIndex}
                       ></Book>
-
-                      {/* <BookCard
-                        key={`bookcard-${index + rowIndex*booksPerRow}`}
-                        book={book}
-                        index={index + rowIndex*booksPerRow}
-                        focusedIndex={focusedIndex}
-                        setFocusedIndex={setFocusedIndex}
-                      ></BookCard> */}
                     </>
                   ))}
                 </ul> 
