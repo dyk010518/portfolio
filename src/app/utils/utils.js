@@ -45,7 +45,7 @@ export const getGenres = (books) => {
   for (const each of books) {
     allGenres = new Set([...allGenres, ...Array.from(each.genres)]);
   }
-  return Array.from(allGenres);
+  return Array.from(allGenres).sort();
 };
 
 export const filterBooks = (books, genres) => {
@@ -111,7 +111,7 @@ export const assignGenres = (books) => {
   `
   const filteredBooks = [];
   for(const each of books){
-    const genres = each.genre.split(", ")
+    const genres = each.genre.split(", ").sort()
     each.genres = genres
     filteredBooks.push(each) 
   }
