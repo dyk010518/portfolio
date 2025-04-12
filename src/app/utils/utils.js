@@ -41,24 +41,22 @@ export const getGenres = (books) => {
   `
   Given 'books', a list of books, getGenres returns the list of unique genres in all of the books
   `
-  const genres = new Set();
-  for(const each of books){
-    genres.add(each.genre);
+  let allGenres = new Set();
+  for (const each of books) {
+    allGenres = new Set([...allGenres, ...Array.from(each.genres)]);
   }
-  return Array.from(genres);
-}
+  return Array.from(allGenres).sort();
+};
 
 export const filterBooks = (books, genres) => {
   `
-  Given 'books', a list of books, and 'genres', a list of genres to filter the books by, filterBooks returns
-  the list of books whose genre is included in 'genres'
+  Given 'books', a list of books, and 'genres', a list of genres to filter the books by,
+  filterBooks returns the list of books whose genre is included in 'genres'
   `
-  const filteredBooks = [];
-  for(const each of books){
-    genres.includes(each.genre) && filteredBooks.push(each);
-  }
-  return filteredBooks;
-}
+  return books.filter(book =>
+    book.genres.some(genre => genres.includes(genre))
+  );
+};
 
 export const rateBooks = (books) => {
   `
@@ -104,4 +102,18 @@ const linspace = (start, stop, num) => {
   }
 
   return result;
+}
+
+export const assignGenres = (books) => {
+  `
+  Given 'books', a list of books, returns the list of books with "genres" as a
+  list of genres
+  `
+  const filteredBooks = [];
+  for(const each of books){
+    const genres = each.genre.split(", ").sort()
+    each.genres = genres
+    filteredBooks.push(each) 
+  }
+  return filteredBooks;
 }

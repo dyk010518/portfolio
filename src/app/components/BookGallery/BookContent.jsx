@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-import { motion } from 'framer-motion';
-import { XMarkIcon } from '@heroicons/react/24/solid';
-
 const BookContent = ({ book }) => {
   const finishedDate = new Date(book.finished);
   const image_file = book.title.replace(/\s+/g, '_').toLowerCase();
@@ -41,10 +38,15 @@ const BookContent = ({ book }) => {
         <div className='lg:mr-8 m-4'>
           <h2 className="text-2xl lg:text-4xl font-semibold text-primary-400">{book.title}</h2>
           <p className="text-lg lg:text-xl text-gray-200 mb-2">by {book.author}</p>
-          <div 
-            className={`text-[#121212] bg-primary-300 rounded-md px-2 py-1 text-xs font-semibold inline-flex items-center justify-center mb-2`}
-          >
-              {book.genre}
+          <div className="flex flex-wrap gap-2 mb-2">
+            {book.genres.map((genre, idx) => (
+              <div
+                key={idx}
+                className="text-[#121212] bg-primary-300 rounded-md px-2 py-1 text-xs font-semibold inline-flex items-center justify-center"
+              >
+                {genre}
+              </div>
+            ))}
           </div>
           <p className={`text-md font-semibold ${getClassColor(book.class)} mb-4`}>{book.rating.toFixed(1)} / 10.0</p>
           <p className="text-gray-200 text-md">Favorite quote:</p>
