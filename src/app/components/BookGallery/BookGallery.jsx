@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks, rateBooks } from "../../utils/utils"
+import { getRowsOfBook, sortBooks, delay, getGenres, filterBooks, rateBooks, assignGenres} from "../../utils/utils"
 import { useWindowSize } from "@uidotdev/usehooks";
 import { motion } from 'framer-motion';
 import BookHeader from "./BookHeader";
@@ -29,7 +29,7 @@ const BookGalley = () => {
 
   useEffect(() => {
     if (books) {
-      setSortedBooks(sortBooks(filterBooks(rateBooks(books), genres), orderBy));
+      setSortedBooks(sortBooks(filterBooks(books, genres), orderBy));
     }
   }, [books, orderBy, genres]);
 
@@ -45,9 +45,10 @@ const BookGalley = () => {
         }
         const result = await response.json();
         const booksFormatted = JSON.parse(result);
-        setBooks(booksFormatted);
-        setGenreOptions(getGenres(booksFormatted));
-        setGenres(getGenres(booksFormatted));
+        const processedBooks = rateBooks(assignGenres(booksFormatted))
+        setBooks(processedBooks);
+        setGenreOptions(getGenres(processedBooks));
+        setGenres(getGenres(processedBooks));
       } catch (error) {
         return <p>Error...</p>;
       } finally {
