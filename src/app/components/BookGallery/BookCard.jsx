@@ -26,7 +26,7 @@ const BookCard = ({ book, setFocusedIndex }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 z-20 flex justify-center bg-black bg-opacity-70"
+      className="fixed inset-0 z-20 flex justify-center bg-[#010f18] bg-opacity-70"
       variants={backdropVariants}
       initial="initial"
       animate={isExiting ? 'exit' : 'animate'}
@@ -34,7 +34,7 @@ const BookCard = ({ book, setFocusedIndex }) => {
       transition={{ delay: 0.2, duration: 1 }}
     >
       <motion.div
-        className="absolute bg-black border-2 border-primary-500 p-6 w-3/4 top-32 bottom-32 overflow-hidden"
+        className="absolute bg-[#010f18] border-2 border-primary-500 p-6 w-3/4 top-32 bottom-32 overflow-hidden"
         variants={cardVariants}
         initial="initial"
         animate={isExiting ? 'exit' : 'animate'}

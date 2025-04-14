@@ -49,7 +49,7 @@ const HeroSection = () => {
 
                     <button className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-tertiary-500 via-primary-500 to-secondary-500 hover:bg-slate-800 text-white mt-3">
                         <Link 
-                            className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2" 
+                            className="block bg-[#010f18] hover:bg-slate-800 rounded-full px-5 py-2" 
                             href="/files/Kim_Daniel_Resume.pdf" 
                             target="_blank"
                             download
