@@ -49,7 +49,7 @@ const HeroSection = () => {
 
                     <button className="px-1 inline-block py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-tertiary-500 via-primary-500 to-secondary-500 hover:bg-slate-800 text-white mt-3">
                         <Link 
-                            className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2" 
+                            className="block bg-[#010f18] hover:bg-slate-800 rounded-full px-5 py-2" 
                             href="/files/Kim_Daniel_Resume.pdf" 
                             target="_blank"
                             download
@@ -65,13 +65,13 @@ const HeroSection = () => {
                 transition={{ duration: 0.5}} 
                 className="col-span-4 place-self-center mt-4 lg:mt-0"
             >
-                <div className="rounded-full bg-[#262626] w-[220px] h-[220px] lg:w-[400px] lg:h-[400px] relative">
+                <div className="rounded-full bg-[#393939] w-[220px] h-[220px] lg:w-[400px] lg:h-[400px] relative overflow-hidden">
                     <Image 
-                        src="/images/hero-image.png"
+                        src="/images/sss.png"
                         alt="hero image"
-                        className='absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2'
-                        width={400}
-                        height={400}
+                        className="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover"
+                        width={600}
+                        height={600}
                     />
                 </div>
             </motion.div>

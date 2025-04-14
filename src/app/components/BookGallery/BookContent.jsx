@@ -42,7 +42,7 @@ const BookContent = ({ book }) => {
             {book.genres.map((genre, idx) => (
               <div
                 key={idx}
-                className="text-[#121212] bg-primary-300 rounded-md px-2 py-1 text-xs font-semibold inline-flex items-center justify-center"
+                className="text-[#010f18] bg-primary-300 rounded-md px-2 py-1 text-xs font-semibold inline-flex items-center justify-center"
               >
                 {genre}
               </div>

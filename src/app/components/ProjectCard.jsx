@@ -48,7 +48,7 @@ const ProjectCard = ({ imgUrl, title, description, paperUrl, codeUrl, previewUrl
             </div>
         </div>
 
-        <div className='text-white rounded-b-xl mt-3 bg-[#181818] py-6 px-4 hover:text-primary'>
+        <div className='text-white rounded-b-xl mt-3 bg-[#111f28] py-6 px-4 hover:text-primary'>
             <h5 className='text-xl font-semibold mb-2'>{title}</h5>
             <p className='text-[#ADB7BE]'>{description}</p>
         </div>
