@@ -24,7 +24,7 @@ const HeroSection = () => {
                         sequence={[
                             'Daniel Kim',
                             2000,
-                            'MIT \'24',
+                            'CS&Finance @ MIT',
                             2000,
                             'AI/ML Researher',
                             2000,
@@ -37,7 +37,7 @@ const HeroSection = () => {
                     />
                 </h1>
                 <p className="text-[#ADB7BE] text-base sm:text-lg mb-6 lg:text-xl">
-                    I am a Class of &apos;24 at MIT studying Computer Science and Finance
+                    I am a Masters student at MIT studying Computer Science and Finance
                 </p>
                 <div>
                     <Link 
