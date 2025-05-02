@@ -6,6 +6,16 @@ import { motion, useInView } from 'framer-motion';
 
 const projectsData = [
     {
+        id: 9,
+        title: "MIT Masters: Single-Cell ATAC-Seq",
+        description: "I got my Masters degree from MIT in February of 2024. I worked on the thesis called \"Leveraging Single-Cell ATAC-Seq for Genomic Language Models and Multimodal Foundation Models\".",
+        image: "/images/projects/9.png",
+        tags: ["All", "Academic"],
+        paperUrl: "/files/kim-dyk0518-meng-eecs-2025-thesis.pdf",
+        previewUrl: "https://dspace.mit.edu/handle/1721.1/159110",
+        codeUrl: "",
+    },
+    {
         id: 8,
         title: "Musical Genre Classification",
         description: "For the MIT class \"Advances in Computer Vision\" (6.8300), our group developed a state-of-the-art musical genre classifier that employs CNN + BiGRU architecture.",
