@@ -107,13 +107,13 @@ const BookGalley = () => {
               </motion.div>
             )
           })}
-          
+{/*           
           {focusedIndex !== -1 && (
             <BookCard
               book={sortedBooks[focusedIndex]}
               setFocusedIndex={setFocusedIndex}
             />
-          )}
+          )} */}
           
           {(!sortedBooks?.length) && (
             <div className="h-[100vh] w-full opacity-0">

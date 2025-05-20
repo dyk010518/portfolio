@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Image from 'next/image';
 
 const BookContent = ({ book }) => {
@@ -31,6 +31,7 @@ const BookContent = ({ book }) => {
             src={`/images/books/${image_file}.png`}
             width={0}
             height={0}
+            alt={image_file}
             sizes="100vw"
             style={{ width: '100%', height: 'auto' }} // optional
           />
