@@ -94,7 +94,7 @@ const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
 						alt={book.title}
 						width={192} 
 						height={288} 
-						className={clsx("h-full w-30 md:w-48 bg-cover", animationStyle)}
+						className={clsx("h-full w-32 md:w-48 bg-cover", animationStyle)}
 					/>
 				</div>
 			</button>
