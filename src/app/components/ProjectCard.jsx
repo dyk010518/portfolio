@@ -13,7 +13,8 @@ const ProjectCard = ({ imgUrl, title, description, paperUrl, codeUrl, previewUrl
                 <Image
                     alt='project image'
                     src={imgUrl}
-                    fill={true}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className='rounded-t-xl'
                 />
             </div>
