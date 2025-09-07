@@ -9,7 +9,7 @@ const BookHeader = ({ isLoading }) => {
         variants={{initial: { y: 0, opacity: 0 }, final: { y: 0, opacity: 1},}} 
         initial="initial" 
         whileInView="final"
-        transition={{ duration: 0.7, delay: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.1 }}
         className="flex justify-center text-center h-screen"
       >
         <h1 className="text-white mt-32 text-4xl sm:text-7xl lg:text-8xl lg:leading-normal font-extrabold">
