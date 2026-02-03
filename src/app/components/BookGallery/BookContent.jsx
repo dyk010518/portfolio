@@ -3,7 +3,11 @@ import Image from 'next/image';
 
 const BookContent = ({ book }) => {
   const finishedDate = new Date(book.finished);
-  const image_file = book.title.replace(/\s+/g, '_').toLowerCase();
+	const image_file = book.title
+    .toLowerCase()
+    .replace(/:/g, '')     // Removes colons
+    .replace(/\s+/g, '_')  // Swaps spaces for underscores
+    .replace(/_+/g, '_');  // Prevents double underscores (e.g., from "Title: Subtitle")
   
   const year = finishedDate.getUTCFullYear();
   const month = finishedDate.toLocaleString('en-US', { month: 'long', timeZone: 'UTC' }); // "August"

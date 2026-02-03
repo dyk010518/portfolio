@@ -5,7 +5,14 @@ import Image from "next/image";
 const animationStyle = "transition-all duration-500 ease will-change-auto"
 
 const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
-  const image_file = book.title.replace(/\s+/g, '_').toLowerCase();
+  const image_file = book.title
+    .toLowerCase()
+    .replace(/:/g, '')     // Removes colons
+    .replace(/\s+/g, '_')  // Swaps spaces for underscores
+    .replace(/_+/g, '_');  // Prevents double underscores (e.g., from "Title: Subtitle")
+
+	const shortedBookTitle = book.title.length > 40 ? book.title.slice(0, 37) + "..." : book.title;
+
   return (
     <>
 			{/* old-looking paper effect */}
@@ -59,11 +66,11 @@ const Book = ({ book, index, focusedIndex, setFocusedIndex }) => {
 					<h2 
 						className={clsx(
 						"m-auto",
-						book.title.length > 30 ? "text-xxxs md:text-sm" : (book.title.length > 15 ? "text-xxs md:text-base" : "text-xs md:text-xl"),
+						shortedBookTitle.length > 30 ? "text-xxxs md:text-sm" : (shortedBookTitle.length > 15 ? "text-xxs md:text-base" : "text-xs md:text-xl"),
 						)}
 						style={{ writingMode: "vertical-lr" }}
 					>
-						{book.title}
+						{shortedBookTitle}
 					</h2>
 				</div>
 				<div
